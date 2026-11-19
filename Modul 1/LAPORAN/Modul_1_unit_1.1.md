@@ -297,19 +297,6 @@ ORDER BY table_name;
 ![Gambar 6. Daftar base table pada schema src](gambar/unit-1.1_06.png)
 
 
-| table_schema | table_name |
-|---|---|
-| src | aktivitas_lms |
-| src | dosen |
-| src | kelulusan |
-| src | krs |
-| src | mahasiswa |
-| src | mata_kuliah |
-| src | nilai |
-| src | pembayaran |
-| src | program_studi |
-| src | semester |
-
 **Interpretasi:** Schema `src` berisi 10 base table yang sesuai dengan sepuluh dataset praktikum, sehingga source layer lengkap.
 
 ---
@@ -331,14 +318,6 @@ ORDER BY tabel;
 
 ![Gambar 7. Jumlah baris lima tabel master/reference](gambar/unit-1.1_07.png)
 
-
-| tabel | jumlah_baris |
-|---|---:|
-| `dosen` | 96 |
-| `mahasiswa` | 1.965 |
-| `mata_kuliah` | 208 |
-| `program_studi` | 6 |
-| `semester` | 8 |
 
 **Interpretasi:** Jumlah baris aktual sama dengan jumlah acuan pada bahan praktikum untuk kelima tabel master/reference (6, 8, 1.965, 96, dan 208). Perbedaan tidak ditemukan. Perlu dicatat bahwa jumlah baris `mahasiswa` (1.965) belum berarti 1.965 mahasiswa unik, karena keunikan NIM diperiksa pada bagian 9.
 
@@ -376,19 +355,6 @@ ORDER BY tabel;
 ![Gambar 8. Jumlah baris seluruh sepuluh tabel](gambar/unit-1.1_08.png)
 
 
-| Dataset | Jumlah baris aktual | Jumlah baris acuan (bila tersedia) | Status/catatan |
-|---|---:|---:|---|
-| `aktivitas_lms` | 200.356 | 200.356 | Sesuai |
-| `dosen` | 96 | 96 | Sesuai |
-| `kelulusan` | 347 | 347 | Sesuai |
-| `krs` | 57.025 | 57.025 | Sesuai |
-| `mahasiswa` | 1.965 | 1.965 | Sesuai |
-| `mata_kuliah` | 208 | 208 | Sesuai |
-| `nilai` | 57.000 | 57.000 | Sesuai |
-| `pembayaran` | 9.500 | 9.500 | Sesuai |
-| `program_studi` | 6 | 6 | Sesuai |
-| `semester` | 8 | 8 | Sesuai |
-
 **Interpretasi:** Seluruh tabel memiliki jumlah baris yang sama dengan nilai acuan, sehingga pemuatan dinilai lengkap. Tidak ada tabel yang kosong atau kekurangan baris.
 
 ---
@@ -410,20 +376,6 @@ ORDER BY table_name;
 **Hasil eksekusi:**
 
 ![Gambar 9. Jumlah kolom setiap tabel](gambar/unit-1.1_09.png)
-
-
-| table_name | jumlah_kolom |
-|---|---:|
-| `aktivitas_lms` | 9 |
-| `dosen` | 7 |
-| `kelulusan` | 7 |
-| `krs` | 8 |
-| `mahasiswa` | 11 |
-| `mata_kuliah` | 7 |
-| `nilai` | 8 |
-| `pembayaran` | 8 |
-| `program_studi` | 5 |
-| `semester` | 6 |
 
 **Interpretasi:** Tabel `mahasiswa` memiliki kolom terbanyak (11), sedangkan `program_studi` paling sedikit (5). Jumlah kolom sesuai dengan definisi source pada bahan praktikum.
 
@@ -449,20 +401,6 @@ ORDER BY ordinal_position;
 ![Gambar 10. Struktur kolom tabel mahasiswa](gambar/unit-1.1_10.png)
 
 
-| posisi_kolom | nama_kolom | tipe_data |
-|---:|---|---|
-| 1 | nim | text |
-| 2 | nama | text |
-| 3 | jk_raw | text |
-| 4 | tanggal_lahir_raw | text |
-| 5 | kota_asal_raw | text |
-| 6 | kode_prodi_raw | text |
-| 7 | prodi_raw | text |
-| 8 | angkatan | text |
-| 9 | tanggal_masuk_raw | text |
-| 10 | status_raw | text |
-| 11 | email_kampus | text |
-
 **Interpretasi:** Tabel memiliki 11 kolom dan seluruhnya bertipe `text`, sesuai urutan header CSV. Kolom `*_raw` (`jk_raw`, `tanggal_lahir_raw`, `kota_asal_raw`, `kode_prodi_raw`, `prodi_raw`, `tanggal_masuk_raw`, `status_raw`) menyimpan nilai mentah apa adanya; kolom `angkatan` juga bertipe teks sehingga perlu `CAST` ke integer saat dihitung (lihat bagian 10). Struktur sesuai dengan definisi source pada bahan praktikum.
 
 ---
@@ -483,10 +421,6 @@ FROM src.mahasiswa;
 
 ![Gambar 11. Verifikasi candidate key NIM](gambar/unit-1.1_11.png)
 
-
-| raw_rows | distinct_nim | excess_duplicate_rows |
-|---:|---:|---:|
-| 1.965 | 1.950 | 15 |
 
 **Analisis:**
 
@@ -515,11 +449,6 @@ FROM src.mahasiswa;
 
 ![Gambar 12. Rentang tahun angkatan](gambar/unit-1.1_12.png)
 
-
-| angkatan_min | angkatan_max |
-|---:|---:|
-| 2021 | 2024 |
-
 **Interpretasi:** Dataset mencakup mahasiswa angkatan 2021 sampai 2024 (empat angkatan). Konversi ke integer diperlukan karena kolom disimpan sebagai teks; tanpa konversi, `MIN`/`MAX` mengurutkan secara teks.
 
 ---
@@ -540,10 +469,6 @@ WHERE kota_asal_raw IS NULL
 ![Gambar 13. Jumlah kota asal kosong](gambar/unit-1.1_13.png)
 
 
-| missing_kota |
-|---:|
-| 30 |
-
 **Interpretasi:** Terdapat 30 record (sekitar 1,53% dari 1.965) tanpa kota asal. Dampaknya, analisis persebaran daerah asal mahasiswa menjadi tidak lengkap. Data tidak diisi atau diperbaiki pada tahap ini.
 
 ---
@@ -560,11 +485,6 @@ FROM src.mahasiswa;
 **Hasil eksekusi:**
 
 ![Gambar 14. Jumlah label prodi_raw berbeda](gambar/unit-1.1_14.png)
-
-
-| distinct_prodi_raw |
-|---:|
-| 30 |
 
 **Interpretasi:** Terdapat 30 label berbeda pada `prodi_raw`, padahal program studi resmi hanya 6 (lihat bagian 13). Jumlahnya tidak sama, sehingga terindikasi variasi penulisan nama program studi.
 
@@ -583,17 +503,6 @@ FROM src.program_studi;
 
 ![Gambar 15. Jumlah program studi pada tabel referensi](gambar/unit-1.1_15.png)
 
-
-| canonical_programs |
-|---:|
-| 6 |
-
-**Perbandingan:**
-
-| Keterangan | Jumlah |
-|---|---:|
-| Variasi label `prodi_raw` | 30 |
-| Record pada `src.program_studi` | 6 |
 
 **Interpretasi:** Tabel referensi memuat 6 nama resmi sehingga menjadi pembanding awal bagi `prodi_raw`. Selisih 24 label menunjukkan adanya variasi representasi (singkatan, kapitalisasi, penulisan lain) pada data mahasiswa.
 
@@ -621,40 +530,6 @@ ORDER BY prodi_raw;
 ![Gambar 18. Distribusi label program studi mentah (baris 21–30)](gambar/unit-1.1_18.png)
 
 
-| prodi_raw | jumlah |
-|---|---:|
-| BD | 21 |
-| Bisnis Dig. | 18 |
-| BISNIS DIGITAL | 12 |
-| Bisnis Digital | 229 |
-| Bisnis digital | 15 |
-| Data Science | 8 |
-| DS | 25 |
-| IF | 34 |
-| INFORMATIKA | 16 |
-| Informatika | 276 |
-| informatika | 20 |
-| SAINS DATA | 11 |
-| Sains Data | 234 |
-| Sains data | 15 |
-| SI | 17 |
-| Sist. Informasi | 17 |
-| SISTEM INFORMASI | 18 |
-| Sistem Informasi | 281 |
-| Sistem informasi | 19 |
-| Tek. Informasi | 25 |
-| Tek. Rekayasa Komputer | 16 |
-| Teknik Informatika | 25 |
-| TEKNOLOGI INFORMASI | 24 |
-| Teknologi Informasi | 286 |
-| Teknologi informasi | 13 |
-| TEKNOLOGI REKAYASA KOMPUTER | 12 |
-| Teknologi Rekayasa Komputer | 224 |
-| TI | 25 |
-| TR | 13 |
-| TRK | 16 |
-
-
 **Interpretasi:** Label dengan frekuensi terbesar adalah *Teknologi Informasi* (286). Sebanyak 435 record (22,1%) memakai 24 label non-canonical seperti singkatan (IF, TI, DS, BD) dan kapitalisasi berbeda (TEKNOLOGI INFORMASI), yang perlu diperiksa lebih lanjut sebelum standardisasi.
 
 ---
@@ -677,15 +552,6 @@ ORDER BY jk_raw;
 ![Gambar 19. Variasi label jenis kelamin](gambar/unit-1.1_19.png)
 
 
-| jk_raw | jumlah |
-|---|---:|
-| F | 39 |
-| L | 764 |
-| Laki-laki | 162 |
-| M | 53 |
-| P | 764 |
-| Perempuan | 183 |
-
 **Interpretasi:** Ada 6 label untuk 2 konsep jenis kelamin (L/Laki-laki/M dan P/Perempuan/F). Standardisasi diperlukan pada tahap berikutnya agar agregasi per jenis kelamin tidak terpecah, tetapi tidak dilakukan pada tabel raw.
 
 ---
@@ -707,15 +573,6 @@ LIMIT 5;
 ![Gambar 21. Sampel lima record mahasiswa (kolom tanggal_lahir_raw–kode_prodi_raw)](gambar/unit-1.1_21.png)
 
 ![Gambar 22. Sampel lima record mahasiswa (kolom tanggal_masuk_raw–email_kampus)](gambar/unit-1.1_22.png)
-
-
-| nim | nama | jk_raw | tanggal_lahir_raw | kota_asal_raw | kode_prodi_raw | prodi_raw | angkatan | tanggal_masuk_raw | status_raw | email_kampus |
-|---|---|---|---|---|---|---|---|---|---|---|
-| 21TI0001 | Dimas Sari Permatasari | M | 14/01/2002 | Surabaya | TI | Teknologi Informasi | 2021 | 2021-08-25 | Aktif | 21ti0001@student.uadw.ac.id |
-| 21TI0002 | Fitri Nugraha | L | 2002-05-20 | Kendari | TI | Teknologi Informasi | 2021 | 2021-08-22 | Lulus | 21ti0002@student.uadw.ac.id |
-| 21TI0003 | Dian Sari | Laki-laki | 2002-09-14 | Kendari | TI | Teknologi Informasi | 2021 | 2021-08-21 | Lulus | 21ti0003@student.uadw.ac.id |
-| 21TI0004 | Alya Kurniawan | Perempuan | 2002-01-10 | Kendari | TI | Teknologi Informasi | 2021 | 2021-08-19 | Lulus | 21ti0004@student.uadw.ac.id |
-| 21TI0005 | Fauzan Febriani Setiaji | P | 07/06/2001 | Padang | TI | Teknologi Informasi | 2021 | 2021-08-25 | Lulus | 21ti0005@student.uadw.ac.id |
 
 *Lima baris pertama berdasarkan urutan baris pada file sumber (tanpa `ORDER BY`).*
 
