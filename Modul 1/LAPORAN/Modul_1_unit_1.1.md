@@ -27,17 +27,20 @@ Praktikum Unit 1.1 bertujuan menyiapkan source layer pada PostgreSQL, memuat dat
 
 ## Ketentuan Praktikum
 
-1. Menggunakan PostgreSQL dan schema `src`.
-2. Nilai raw dipertahankan sebagaimana tersedia pada file sumber.
-3. Tidak ada cleaning, standardisasi, deduplikasi, `UPDATE`, atau `DELETE` terhadap isi raw source.
-4. Path file CSV disesuaikan dengan lokasi dataset pada komputer masing-masing.
-5. Seluruh query tersimpan pada file `SQL/modul_1_unit_1.1.sql`.
+1. Gunakan PostgreSQL dan schema `src`.
+2. Pertahankan nilai raw sebagaimana tersedia pada file sumber.
+3. Jangan melakukan proses cleaning, standardisasi, deduplikasi, `UPDATE`, atau `DELETE` terhadap isi raw source pada unit ini.
+4. Sesuaikan path file CSV dengan lokasi dataset pada komputer masing-masing.
+5. Untuk setiap aktivitas query, cantumkan query yang dijalankan, hasil eksekusi, dan interpretasi.
+6. Apabila hasil aktual berbeda dari nilai acuan pada bahan praktikum, catat perbedaannya dan lakukan pemeriksaan; jangan mengubah data hanya agar hasilnya sama.
 
 ---
 
 ## 1. Verifikasi Environment PostgreSQL
 
 ### 1.1 Memeriksa versi PostgreSQL
+
+Query yang digunakan:
 
 ```sql
 SELECT version();
@@ -46,7 +49,7 @@ SELECT version();
 **Hasil eksekusi:**
 
 
-![Gambar 01.png)
+![Gambar 1. Hasil SELECT version()](gambar/unit-1.1_01.png)
 
 ### 1.2 Memeriksa database dan user aktif
 
@@ -61,9 +64,9 @@ SELECT
 ![Gambar 2. Hasil database dan user aktif](gambar/unit-1.1_02.png)
 
 
-
-
 ### 1.3 Memeriksa keberadaan schema `src`
+
+Query yang digunakan:
 
 ```sql
 SELECT schema_name
@@ -74,7 +77,6 @@ WHERE schema_name = 'src';
 **Hasil eksekusi:**
 
 ![Gambar 3. Hasil pemeriksaan schema src](gambar/unit-1.1_03.png)
-
 
 
 ---
@@ -101,115 +103,126 @@ Source layer menggunakan schema `src` untuk menyimpan data mentah (*raw source*)
 **Script DDL yang digunakan:**
 
 ```sql
--- Struktur kolom dan urutan mengikuti header file CSV UADW v1.0.
--- Atribut mentah (*_raw) dan atribut kategori disimpan sebagai TEXT agar nilai asli tidak berubah.
+-- 1. Membuat schema src
 CREATE SCHEMA IF NOT EXISTS src;
 
+-- 2. Membuat sepuluh tabel sumber 
+-- Membuat tabel program_studi
 CREATE TABLE IF NOT EXISTS src.program_studi (
-    kode_prodi      TEXT,
-    nama_prodi      TEXT,
-    fakultas        TEXT,
-    departemen      TEXT,
-    status          TEXT
+    kode_prodi TEXT,
+    nama_prodi TEXT,
+    fakultas TEXT,
+    departemen TEXT,
+    status TEXT
 );
 
+-- Membuat tabel semester
 CREATE TABLE IF NOT EXISTS src.semester (
-    semester_id     TEXT,
-    tahun_akademik  TEXT,
-    term            TEXT,
-    urutan_tahun    INTEGER,
-    tanggal_mulai   DATE,
-    tanggal_selesai DATE
+    semester_id TEXT,
+    tahun_akademik TEXT,
+    term TEXT,
+    urutan_tahun INTEGER,
+    tanggal_mulai TEXT,
+    tanggal_selesai TEXT
 );
 
+-- Membuat tabel mahasiswa
 CREATE TABLE IF NOT EXISTS src.mahasiswa (
-    nim                 TEXT,
-    nama                TEXT,
-    jk_raw              TEXT,
-    tanggal_lahir_raw   TEXT,
-    kota_asal_raw       TEXT,
-    kode_prodi_raw      TEXT,
-    prodi_raw           TEXT,
-    angkatan            TEXT,
-    tanggal_masuk_raw   TEXT,
-    status_raw          TEXT,
-    email_kampus        TEXT
+    nim TEXT,
+    nama TEXT,
+    jk_raw TEXT,
+    tanggal_lahir_raw TEXT,
+    kota_asal_raw TEXT,
+    kode_prodi_raw TEXT,
+    prodi_raw TEXT,
+    angkatan TEXT,
+    tanggal_masuk_raw TEXT,
+    status_raw TEXT,
+    email_kampus TEXT
 );
 
+-- Membuat tabel dosen
 CREATE TABLE IF NOT EXISTS src.dosen (
-    nidn                TEXT,
-    nama_dosen          TEXT,
-    jk_raw              TEXT,
-    unit_prodi_raw      TEXT,
-    jabatan_akademik    TEXT,
-    tanggal_masuk_raw   TEXT,
-    status              TEXT
+    nidn TEXT,
+    nama_dosen TEXT,
+    jk_raw TEXT,
+    unit_prodi_raw TEXT,
+    jabatan_akademik TEXT,
+    tanggal_masuk_raw TEXT,
+    status TEXT
 );
 
+-- Membuat tabel mata_kuliah
 CREATE TABLE IF NOT EXISTS src.mata_kuliah (
-    kode_mk              TEXT,
-    nama_mk              TEXT,
-    kode_prodi           TEXT,
-    sks                  INTEGER,
+    kode_mk TEXT,
+    nama_mk TEXT,
+    kode_prodi TEXT,
+    sks INTEGER,
     semester_rekomendasi INTEGER,
-    kategori             TEXT,
-    aktif                TEXT
+    kategori TEXT,
+    aktif TEXT
 );
 
+-- Membuat tabel krs
 CREATE TABLE IF NOT EXISTS src.krs (
-    krs_id              TEXT,
-    nim                 TEXT,
-    kode_mk             TEXT,
-    semester_id         TEXT,
-    kelas               TEXT,
-    status_krs          TEXT,
-    tanggal_ambil_raw   TEXT,
-    sumber_sistem       TEXT
+    krs_id TEXT,
+    nim TEXT,
+    kode_mk TEXT,
+    semester_id TEXT,
+    kelas TEXT,
+    status_krs TEXT,
+    tanggal_ambil_raw TEXT,
+    sumber_sistem TEXT
 );
 
+-- Membuat tabel nilai
 CREATE TABLE IF NOT EXISTS src.nilai (
-    nilai_id            TEXT,
-    nim                 TEXT,
-    kode_mk             TEXT,
-    semester_id         TEXT,
-    nilai_angka         NUMERIC,
-    nilai_huruf         TEXT,
-    status_lulus        TEXT,
-    tanggal_input_raw   TEXT
+    nilai_id TEXT,
+    nim TEXT,
+    kode_mk TEXT,
+    semester_id TEXT,
+    nilai_angka NUMERIC(6,2),
+    nilai_huruf TEXT,
+    status_lulus TEXT,
+    tanggal_input_raw TEXT
 );
 
+-- 9. Membuat tabel aktivitas_lms
 CREATE TABLE IF NOT EXISTS src.aktivitas_lms (
-    lms_event_id    TEXT,
-    nim             TEXT,
-    kode_mk         TEXT,
-    semester_id     TEXT,
-    waktu_event     TIMESTAMP,
-    tipe_event      TEXT,
-    durasi_menit    INTEGER,
-    skor_kuis       NUMERIC,
-    platform        TEXT
+    lms_event_id TEXT,
+    nim TEXT,
+    kode_mk TEXT,
+    semester_id TEXT,
+    waktu_event TEXT,
+    tipe_event TEXT,
+    durasi_menit INTEGER,
+    skor_kuis NUMERIC(6,2),
+    platform TEXT
 );
 
+-- Membuat tabel pembayaran
 CREATE TABLE IF NOT EXISTS src.pembayaran (
-    pembayaran_id       TEXT,
-    nim                 TEXT,
-    semester_id         TEXT,
-    tanggal_bayar_raw   TEXT,
-    nominal_tagihan     NUMERIC,
-    nominal_bayar       NUMERIC,
-    status_pembayaran   TEXT,
-    kanal               TEXT
+    pembayaran_id TEXT,
+    nim TEXT,
+    semester_id TEXT,
+    tanggal_bayar_raw TEXT,
+    nominal_tagihan BIGINT,
+    nominal_bayar BIGINT,
+    status_pembayaran TEXT,
+    kanal TEXT
 );
 
+-- Membuat tabel kelulusan
 CREATE TABLE IF NOT EXISTS src.kelulusan (
-    kelulusan_id        TEXT,
-    nim                 TEXT,
-    tanggal_lulus_raw   TEXT,
-    ipk_final           NUMERIC,
-    masa_studi_bulan    INTEGER,
-    predikat            TEXT,
-    status_tepat_waktu  TEXT
+    kelulusan_id TEXT,
+    nim TEXT,
+    tanggal_lulus_raw TEXT,
+    ipk_final NUMERIC(4,2),
+    masa_studi_bulan INTEGER,
+    predikat TEXT,
+    status_tepat_waktu TEXT
 );
+
 ```
 
 **Bukti eksekusi / hasil:**
@@ -217,7 +230,6 @@ CREATE TABLE IF NOT EXISTS src.kelulusan (
 
 ![Gambar 4. Eksekusi DDL pembuatan schema dan tabel (log Output DBeaver)](gambar/unit-1.1_04.png)
 
-![Gambar 5. Inventarisasi tabel setelah DDL](gambar/unit-1.1_05.png)
 
 
 **Catatan:** Perintah `DROP TABLE` dapat menghapus tabel beserta isinya, sehingga tidak digunakan kecuali diperlukan pada tahap persiapan. DDL di atas memakai `IF NOT EXISTS` agar aman dijalankan ulang.
@@ -230,14 +242,15 @@ CREATE TABLE IF NOT EXISTS src.kelulusan (
 
 ### 3.1 Proses impor CSV melalui DBeaver
 
-Sepuluh file CSV diimpor menggunakan fitur **Import Data** pada DBeaver karena praktikum dijalankan melalui DBeaver di Windows. Perintah `\\copy` merupakan perintah khusus `psql` sehingga tidak dijalankan pada SQL Editor DBeaver.
+Sepuluh file CSV diimpor menggunakan fitur Import Data pada DBeaver karena praktikum dijalankan melalui DBeaver di Windows. Perintah \\copy merupakan perintah khusus psql sehingga tidak dijalankan pada SQL Editor DBeaver.
 
 Langkah impor yang dilakukan:
-1. Klik kanan tabel tujuan pada schema `src`, lalu pilih **Import Data**.
-2. Pilih sumber **CSV** dan tentukan file yang sesuai dari folder `01_raw_data`.
-3. Pastikan encoding `UTF-8`, delimiter koma, dan opsi header aktif.
+
+1. Klik kanan tabel tujuan pada schema src, lalu pilih Import Data.
+2. Pilih sumber CSV dan tentukan file yang sesuai dari folder 01_raw_data.
+3. Pastikan encoding UTF-8, delimiter koma, dan opsi header aktif.
 4. Periksa preview serta pemetaan kolom sumber ke kolom tujuan.
-5. Klik **Proceed** dan tunggu sampai proses selesai.
+5. Klik Proceed dan tunggu sampai proses selesai.
 
 | No. | File CSV | Tabel tujuan |
 |---:|---|---|
@@ -272,9 +285,9 @@ Langkah impor yang dilakukan:
 
 **Bukti proses impor:** hasil query verifikasi jumlah record seluruh tabel setelah impor.
 
-![Gambar 8. Jumlah baris seluruh sepuluh tabel setelah impor](gambar/unit-1.1_08.png)
+![Gambar 5. Jumlah baris seluruh sepuluh tabel setelah impor](gambar/unit-1.1_05.png)
 
-**Interpretasi:** Berdasarkan keluaran impor yang dicatat, kesepuluh file CSV berhasil dimuat ke tabel yang sesuai dan jumlah baris hasil impor sama dengan jumlah baris acuan pada bahan praktikum (lihat bagian 6). Nilai raw dipertahankan dengan memuat file CSV melalui fitur **Import Data** DBeaver (tanpa transformasi), sesuai pemetaan kolom tabel sumber, dan tanpa menjalankan `UPDATE` atau `DELETE` setelah impor.
+**Interpretasi:** Proses impor sepuluh file CSV ke tabel tujuan pada schema `src` berhasil dilakukan melalui fitur Import Data di DBeaver. Berdasarkan catatan hasil impor, jumlah baris yang masuk berkisar dari 6 baris pada `program_studi` hingga 200.356 baris pada `aktivitas_lms`. Jumlah tersebut selanjutnya diverifikasi kembali menggunakan query `COUNT(*)` agar dapat dipastikan bahwa data telah termuat sesuai jumlah yang dilaporkan.
 
 ---
 
@@ -319,7 +332,8 @@ ORDER BY tabel;
 ![Gambar 7. Jumlah baris lima tabel master/reference](gambar/unit-1.1_07.png)
 
 
-**Interpretasi:** Jumlah baris aktual sama dengan jumlah acuan pada bahan praktikum untuk kelima tabel master/reference (6, 8, 1.965, 96, dan 208). Perbedaan tidak ditemukan. Perlu dicatat bahwa jumlah baris `mahasiswa` (1.965) belum berarti 1.965 mahasiswa unik, karena keunikan NIM diperiksa pada bagian 9.
+
+**Interpretasi:** Lima tabel master/reference berhasil diverifikasi memiliki jumlah baris yang berbeda sesuai fungsinya. Tabel `mahasiswa` berisi 1.965 baris, `mata_kuliah` 208 baris, `dosen` 96 baris, `semester` 8 baris, dan `program_studi` 6 baris. Hasil ini menunjukkan bahwa data pada kelima tabel telah tersedia dan dapat digunakan sebagai sumber referensi untuk proses profiling berikutnya.
 
 ---
 
@@ -355,6 +369,7 @@ ORDER BY tabel;
 ![Gambar 8. Jumlah baris seluruh sepuluh tabel](gambar/unit-1.1_08.png)
 
 
+
 **Interpretasi:** Seluruh tabel memiliki jumlah baris yang sama dengan nilai acuan, sehingga pemuatan dinilai lengkap. Tidak ada tabel yang kosong atau kekurangan baris.
 
 ---
@@ -365,8 +380,8 @@ ORDER BY tabel;
 
 ```sql
 SELECT
-    table_name   AS nama_tabel,
-    COUNT(*)     AS jumlah_kolom
+    table_name,
+    COUNT(*) AS jumlah_kolom
 FROM information_schema.columns
 WHERE table_schema = 'src'
 GROUP BY table_name
@@ -377,7 +392,8 @@ ORDER BY table_name;
 
 ![Gambar 9. Jumlah kolom setiap tabel](gambar/unit-1.1_09.png)
 
-**Interpretasi:** Tabel `mahasiswa` memiliki kolom terbanyak (11), sedangkan `program_studi` paling sedikit (5). Jumlah kolom sesuai dengan definisi source pada bahan praktikum.
+
+**Interpretasi:** Berdasarkan hasil query, jumlah kolom pada setiap tabel berada pada rentang 5 sampai 11 kolom. Tabel `mahasiswa` memiliki jumlah kolom terbanyak, yaitu 11 kolom, sedangkan `program_studi` memiliki jumlah kolom paling sedikit, yaitu 5 kolom. Jumlah kolom tersebut sesuai dengan struktur source yang digunakan dalam praktikum.
 
 ---
 
@@ -401,8 +417,7 @@ ORDER BY ordinal_position;
 ![Gambar 10. Struktur kolom tabel mahasiswa](gambar/unit-1.1_10.png)
 
 
-**Interpretasi:** Tabel memiliki 11 kolom dan seluruhnya bertipe `text`, sesuai urutan header CSV. Kolom `*_raw` (`jk_raw`, `tanggal_lahir_raw`, `kota_asal_raw`, `kode_prodi_raw`, `prodi_raw`, `tanggal_masuk_raw`, `status_raw`) menyimpan nilai mentah apa adanya; kolom `angkatan` juga bertipe teks sehingga perlu `CAST` ke integer saat dihitung (lihat bagian 10). Struktur sesuai dengan definisi source pada bahan praktikum.
-
+**Interpretasi:** Tabel `mahasiswa` memiliki 11 kolom sesuai urutan header CSV. Berdasarkan hasil verifikasi, 10 kolom bertipe `text`, sedangkan kolom `angkatan` bertipe `integer`. Kolom-kolom yang menggunakan akhiran `_raw` tetap menyimpan nilai sumber tanpa standardisasi pada tahap ini. Karena `angkatan` sudah bertipe `integer`, nilai minimum dan maksimum dapat dihitung secara numerik tanpa perlu mengubah tipe datanya terlebih dahulu.
 ---
 
 ## 9. Verifikasi Candidate Key Mahasiswa
@@ -411,9 +426,9 @@ ORDER BY ordinal_position;
 
 ```sql
 SELECT
-    COUNT(*)                        AS raw_rows,
-    COUNT(DISTINCT nim)             AS distinct_nim,
-    COUNT(*) - COUNT(DISTINCT nim)  AS excess_duplicate_rows
+    COUNT(*) AS raw_rows,
+    COUNT(DISTINCT nim) AS distinct_nim,
+    COUNT(*) - COUNT(DISTINCT nim) AS excess_duplicate_rows
 FROM src.mahasiswa;
 ```
 
@@ -449,7 +464,9 @@ FROM src.mahasiswa;
 
 ![Gambar 12. Rentang tahun angkatan](gambar/unit-1.1_12.png)
 
-**Interpretasi:** Dataset mencakup mahasiswa angkatan 2021 sampai 2024 (empat angkatan). Konversi ke integer diperlukan karena kolom disimpan sebagai teks; tanpa konversi, `MIN`/`MAX` mengurutkan secara teks.
+
+**Interpretasi:** Berdasarkan hasil query, tahun angkatan mahasiswa paling awal adalah 2021 dan paling akhir adalah 2024. Dengan demikian, dataset mencakup empat kelompok angkatan, yaitu 2021, 2022, 2023, dan 2024. Karena kolom `angkatan` pada hasil verifikasi bertipe `integer`, fungsi `MIN` dan `MAX` menghitung rentang tahun secara numerik.
+
 
 ---
 
@@ -460,8 +477,7 @@ FROM src.mahasiswa;
 ```sql
 SELECT COUNT(*) AS missing_kota
 FROM src.mahasiswa
-WHERE kota_asal_raw IS NULL
-   OR TRIM(kota_asal_raw) = '';
+WHERE TRIM(COALESCE(kota_asal_raw, '')) = '';
 ```
 
 **Hasil eksekusi:**
@@ -469,7 +485,7 @@ WHERE kota_asal_raw IS NULL
 ![Gambar 13. Jumlah kota asal kosong](gambar/unit-1.1_13.png)
 
 
-**Interpretasi:** Terdapat 30 record (sekitar 1,53% dari 1.965) tanpa kota asal. Dampaknya, analisis persebaran daerah asal mahasiswa menjadi tidak lengkap. Data tidak diisi atau diperbaiki pada tahap ini.
+**Interpretasi:** Hasil query menunjukkan bahwa terdapat 30 record mahasiswa yang tidak memiliki informasi kota asal, atau sekitar 1,53% dari total 1.965 baris. Kondisi ini dapat menyebabkan analisis persebaran daerah asal mahasiswa menjadi kurang lengkap karena sebagian data lokasi tidak tersedia. Nilai yang kosong tetap dibiarkan apa adanya karena tahap ini hanya melakukan profiling dan belum mencakup proses pengisian atau perbaikan data.
 
 ---
 
@@ -486,8 +502,8 @@ FROM src.mahasiswa;
 
 ![Gambar 14. Jumlah label prodi_raw berbeda](gambar/unit-1.1_14.png)
 
-**Interpretasi:** Terdapat 30 label berbeda pada `prodi_raw`, padahal program studi resmi hanya 6 (lihat bagian 13). Jumlahnya tidak sama, sehingga terindikasi variasi penulisan nama program studi.
 
+**Interpretasi:** Hasil query menemukan 30 nilai berbeda pada kolom `prodi_raw`, sedangkan tabel referensi `src.program_studi` hanya memuat 6 program studi resmi. Perbedaan jumlah tersebut menunjukkan adanya variasi label program studi pada data mahasiswa, misalnya penggunaan singkatan, perbedaan kapitalisasi, atau bentuk penulisan lainnya. Temuan ini menjadi indikasi awal bahwa label program studi perlu dipetakan ke referensi resmi pada tahap transformasi, tetapi belum diubah pada source.
 ---
 
 ## 13. Menghitung Jumlah Program Studi pada Tabel Referensi
@@ -504,7 +520,14 @@ FROM src.program_studi;
 ![Gambar 15. Jumlah program studi pada tabel referensi](gambar/unit-1.1_15.png)
 
 
-**Interpretasi:** Tabel referensi memuat 6 nama resmi sehingga menjadi pembanding awal bagi `prodi_raw`. Selisih 24 label menunjukkan adanya variasi representasi (singkatan, kapitalisasi, penulisan lain) pada data mahasiswa.
+**Perbandingan:**
+
+| Keterangan | Jumlah |
+|---|---:|
+| Variasi label `prodi_raw` | 30 |
+| Record pada `src.program_studi` | 6 |
+
+**Interpretasi:** Tabel referensi `src.program_studi` berisi 6 record program studi yang digunakan sebagai acuan nama program studi resmi. Jika dibandingkan dengan 30 variasi label pada kolom `prodi_raw`, terdapat selisih 24 label. Selisih ini menunjukkan bahwa data mahasiswa memuat beberapa bentuk penulisan selain label resmi, sehingga diperlukan pemetaan label ke program studi yang sesuai pada tahap berikutnya.
 
 ---
 
@@ -523,14 +546,13 @@ ORDER BY prodi_raw;
 
 **Hasil eksekusi:**
 
-![Gambar 16. Distribusi label program studi mentah (baris 1–11)](gambar/unit-1.1_16.png)
-
-![Gambar 17. Distribusi label program studi mentah (baris 12–22)](gambar/unit-1.1_17.png)
-
-![Gambar 18. Distribusi label program studi mentah (baris 21–30)](gambar/unit-1.1_18.png)
+![Gambar 16. Distribusi label program studi mentah](gambar/unit-1.1_16.png)
 
 
-**Interpretasi:** Label dengan frekuensi terbesar adalah *Teknologi Informasi* (286). Sebanyak 435 record (22,1%) memakai 24 label non-canonical seperti singkatan (IF, TI, DS, BD) dan kapitalisasi berbeda (TEKNOLOGI INFORMASI), yang perlu diperiksa lebih lanjut sebelum standardisasi.
+
+
+
+**Interpretasi:** Distribusi menunjukkan bahwa label *Teknologi Informasi* memiliki jumlah terbanyak, yaitu 286 record. Selain enam label yang sama dengan nama program studi pada tabel referensi, terdapat 24 label lain dengan total 435 record atau sekitar 22,1% dari seluruh data mahasiswa. Variasi tersebut terlihat dalam bentuk singkatan, pemendekan nama, dan perbedaan kapitalisasi. Oleh karena itu, label-label tersebut perlu diperiksa dan dipetakan terlebih dahulu sebelum dilakukan standardisasi agar setiap mahasiswa terhubung dengan program studi yang tepat.
 
 ---
 
@@ -549,10 +571,10 @@ ORDER BY jk_raw;
 
 **Hasil eksekusi:**
 
-![Gambar 19. Variasi label jenis kelamin](gambar/unit-1.1_19.png)
+![Gambar 17. Variasi label jenis kelamin](gambar/unit-1.1_17.png)
 
 
-**Interpretasi:** Ada 6 label untuk 2 konsep jenis kelamin (L/Laki-laki/M dan P/Perempuan/F). Standardisasi diperlukan pada tahap berikutnya agar agregasi per jenis kelamin tidak terpecah, tetapi tidak dilakukan pada tabel raw.
+**Interpretasi:**  Hasil pengelompokan menunjukkan terdapat enam label pada kolom `jk_raw`, yaitu `F`, `L`, `Laki-laki`, `M`, `P`, dan `Perempuan`. Keenam label tersebut merepresentasikan dua kategori, yaitu laki-laki dan perempuan, tetapi ditulis dengan bentuk yang berbeda. Jika data langsung dihitung berdasarkan label mentah, jumlah setiap kategori dapat terpisah ke beberapa kelompok. Karena itu, standardisasi label diperlukan pada tahap transformasi berikutnya, bukan pada source raw.
 
 ---
 
@@ -568,15 +590,16 @@ LIMIT 5;
 
 **Hasil eksekusi:**
 
-![Gambar 20. Sampel lima record mahasiswa (kolom nim–jk_raw)](gambar/unit-1.1_20.png)
+![Gambar 18. Sampel lima record mahasiswa](gambar/unit-1.1_18.png)
 
-![Gambar 21. Sampel lima record mahasiswa (kolom tanggal_lahir_raw–kode_prodi_raw)](gambar/unit-1.1_21.png)
 
-![Gambar 22. Sampel lima record mahasiswa (kolom tanggal_masuk_raw–email_kampus)](gambar/unit-1.1_22.png)
+
+
 
 *Lima baris pertama berdasarkan urutan baris pada file sumber (tanpa `ORDER BY`).*
 
-**Interpretasi:** Sampel membantu memahami bentuk dan isi tiap kolom: NIM berpola tahun-kode prodi-nomor (mis. 21TI0001), jenis kelamin muncul dengan beberapa bentuk (M, L, Laki-laki, Perempuan, P), dan tanggal lahir memakai format berbeda (14/01/2002 dan 2002-05-20). Namun lima baris hanya sebagian kecil dari 1.965 baris sehingga tidak cukup untuk menyimpulkan kualitas seluruh dataset; masalah seperti duplikasi, nilai kosong, atau variasi label baru terlihat lewat agregasi pada seluruh data.
+**Interpretasi:** Lima record yang ditampilkan memberikan gambaran awal mengenai isi dan format kolom pada tabel `mahasiswa`. Contohnya, NIM memiliki pola gabungan tahun, kode program studi, dan nomor urut; kolom jenis kelamin menggunakan beberapa variasi label; sedangkan tanggal lahir ditulis dengan format yang berbeda. Meskipun demikian, sampel lima baris belum mewakili keseluruhan 1.965 record. Oleh karena itu, kesimpulan mengenai kualitas data harus didasarkan pada pemeriksaan seluruh record, seperti perhitungan duplikasi, nilai kosong, dan variasi label yang telah dilakukan pada bagian sebelumnya.
+
 
 ---
 
@@ -585,39 +608,29 @@ LIMIT 5;
 **Query SQL:**
 
 ```sql
-SELECT 'program_studi' AS source, COUNT(*) AS jumlah_baris FROM src.program_studi
-UNION ALL
-SELECT 'semester', COUNT(*) FROM src.semester
-UNION ALL
-SELECT 'mahasiswa', COUNT(*) FROM src.mahasiswa
-UNION ALL
-SELECT 'dosen', COUNT(*) FROM src.dosen
-UNION ALL
-SELECT 'mata_kuliah', COUNT(*) FROM src.mata_kuliah
-UNION ALL
-SELECT 'krs', COUNT(*) FROM src.krs
-UNION ALL
-SELECT 'nilai', COUNT(*) FROM src.nilai
-UNION ALL
-SELECT 'aktivitas_lms', COUNT(*) FROM src.aktivitas_lms
-UNION ALL
-SELECT 'pembayaran', COUNT(*) FROM src.pembayaran
-UNION ALL
-SELECT 'kelulusan', COUNT(*) FROM src.kelulusan
-ORDER BY jumlah_baris DESC;
+SELECT 'program_studi' AS source, COUNT(*) AS rows FROM src.program_studi
+UNION ALL SELECT 'semester', COUNT(*) FROM src.semester
+UNION ALL SELECT 'mahasiswa', COUNT(*) FROM src.mahasiswa
+UNION ALL SELECT 'dosen', COUNT(*) FROM src.dosen
+UNION ALL SELECT 'mata_kuliah', COUNT(*) FROM src.mata_kuliah
+UNION ALL SELECT 'krs', COUNT(*) FROM src.krs
+UNION ALL SELECT 'nilai', COUNT(*) FROM src.nilai
+UNION ALL SELECT 'aktivitas_lms', COUNT(*) FROM src.aktivitas_lms
+UNION ALL SELECT 'pembayaran', COUNT(*) FROM src.pembayaran
+UNION ALL SELECT 'kelulusan', COUNT(*) FROM src.kelulusan
+ORDER BY rows DESC;
 ```
 
 **Hasil eksekusi:**
 
-![Gambar 23. Source dengan jumlah baris terbesar](gambar/unit-1.1_23.png)
-
+![Gambar 19. Source dengan jumlah baris terbesar](gambar/unit-1.1_19.png)
 
 
 **Source dengan jumlah baris terbanyak:** `aktivitas_lms`
 
 **Jumlah baris:** 200.356
 
-**Interpretasi:** `aktivitas_lms` adalah tabel terbesar karena mencatat setiap aktivitas mahasiswa di LMS. Informasi ukuran berguna untuk merencanakan beban pemrosesan, pembagian proses (*batch*), dan prioritas optimasi pada pengolahan data berikutnya.
+**Interpretasi:** Berdasarkan hasil pengurutan jumlah baris, tabel `aktivitas_lms` merupakan source dengan ukuran terbesar, yaitu 200.356 baris. Jumlah tersebut jauh lebih besar dibandingkan tabel source lainnya karena tabel ini mencatat aktivitas mahasiswa pada Learning Management System (LMS). Ukuran data tersebut perlu diperhatikan dalam perencanaan proses pengolahan berikutnya, terutama untuk menentukan strategi pemrosesan dan kebutuhan optimasi.
 
 ---
 
@@ -626,17 +639,22 @@ ORDER BY jumlah_baris DESC;
 **Query SQL:**
 
 ```sql
-SELECT 'krs' AS tabel, COUNT(DISTINCT nim) AS jumlah_nim_unik FROM src.krs
-UNION ALL SELECT 'nilai',         COUNT(DISTINCT nim) FROM src.nilai
-UNION ALL SELECT 'aktivitas_lms', COUNT(DISTINCT nim) FROM src.aktivitas_lms
-UNION ALL SELECT 'pembayaran',    COUNT(DISTINCT nim) FROM src.pembayaran
-UNION ALL SELECT 'kelulusan',     COUNT(DISTINCT nim) FROM src.kelulusan;
+SELECT 'krs' AS source,
+       COUNT(DISTINCT nim) AS distinct_nim
+FROM src.krs
+UNION ALL
+SELECT 'nilai', COUNT(DISTINCT nim) FROM src.nilai
+UNION ALL
+SELECT 'aktivitas_lms', COUNT(DISTINCT nim) FROM src.aktivitas_lms
+UNION ALL
+SELECT 'pembayaran', COUNT(DISTINCT nim) FROM src.pembayaran
+UNION ALL
+SELECT 'kelulusan', COUNT(DISTINCT nim) FROM src.kelulusan;
 ```
 
 **Hasil eksekusi:**
 
-![Gambar 24. Jumlah NIM unik pada tabel transaksi/aktivitas](gambar/unit-1.1_24.png)
-
+![Gambar 20. Jumlah NIM unik pada tabel transaksi/aktivitas](gambar/unit-1.1_20.png)
 
 
 ### 18.1 Catatan relasi awal
@@ -649,7 +667,7 @@ UNION ALL SELECT 'kelulusan',     COUNT(DISTINCT nim) FROM src.kelulusan;
 | REL04 | `mahasiswa` | `nim` | `pembayaran` | `nim` | 1 mahasiswa : banyak pembayaran | Uji orphan NIM pembayaran |
 | REL05 | `mahasiswa` | `nim` | `kelulusan` | `nim` | 1 mahasiswa : 0/1 outcome kelulusan secara bisnis | Uji duplikasi kelulusan dan orphan NIM |
 
-**Interpretasi:** Kolom `nim` muncul pada tabel mahasiswa dan kelima tabel transaksi/aktivitas, sehingga terindikasi relasi satu-ke-banyak antara mahasiswa dan transaksi (kecuali kelulusan yang secara bisnis 0 atau 1 per mahasiswa). Jumlah NIM unik pada `krs`, `nilai`, `aktivitas_lms`, dan `pembayaran` (masing-masing 1.950) sama dengan jumlah NIM unik pada `mahasiswa`, sedangkan `kelulusan` hanya 345 karena tidak semua mahasiswa sudah lulus. Namun kesamaan nama kolom dan jumlah NIM berbeda **belum membuktikan integritas referensial**; pemeriksaan lanjutan (uji orphan dengan `LEFT JOIN`) dilakukan pada Unit 1.2.
+**Interpretasi:** Kolom `nim` terdapat pada tabel `mahasiswa` serta tabel `krs`, `nilai`, `aktivitas_lms`, `pembayaran`, dan `kelulusan`. Hal ini menunjukkan adanya dugaan hubungan antara data mahasiswa dan data transaksi atau aktivitas. Jumlah NIM unik pada `krs`, `nilai`, `aktivitas_lms`, dan `pembayaran` masing-masing 1.950, sama dengan jumlah NIM unik pada tabel `mahasiswa`, sedangkan tabel `kelulusan` memiliki 345 NIM unik. Perbedaan tersebut dapat terjadi karena tidak semua mahasiswa memiliki catatan kelulusan. Namun, kesamaan nama kolom dan jumlah NIM unik belum membuktikan bahwa seluruh NIM pada tabel terkait benar-benar cocok. Integritas relasi masih perlu diperiksa melalui pengujian orphan menggunakan `LEFT JOIN` pada Unit 1.2.
 
 ---
 
