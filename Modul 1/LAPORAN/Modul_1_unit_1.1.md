@@ -61,9 +61,6 @@ SELECT
 ![Gambar 2. Hasil database dan user aktif](gambar/unit-1.1_02.png)
 
 
-| database_aktif | user_aktif |
-|---|---|
-| [postgres] | [postgres] |
 
 
 ### 1.3 Memeriksa keberadaan schema `src`
@@ -78,10 +75,6 @@ WHERE schema_name = 'src';
 
 ![Gambar 3. Hasil pemeriksaan schema src](gambar/unit-1.1_03.png)
 
-
-| schema_name |
-|---|
-| src |
 
 
 ---
@@ -762,18 +755,6 @@ ORDER BY jumlah_baris DESC;
 ![Gambar 23. Source dengan jumlah baris terbesar](gambar/unit-1.1_23.png)
 
 
-| source | rows |
-|---|---:|
-| aktivitas_lms | 200.356 |
-| krs | 57.025 |
-| nilai | 57.000 |
-| pembayaran | 9.500 |
-| mahasiswa | 1.965 |
-| kelulusan | 347 |
-| mata_kuliah | 208 |
-| dosen | 96 |
-| semester | 8 |
-| program_studi | 6 |
 
 **Source dengan jumlah baris terbanyak:** `aktivitas_lms`
 
@@ -800,13 +781,6 @@ UNION ALL SELECT 'kelulusan',     COUNT(DISTINCT nim) FROM src.kelulusan;
 ![Gambar 24. Jumlah NIM unik pada tabel transaksi/aktivitas](gambar/unit-1.1_24.png)
 
 
-| source | distinct_nim |
-|---|---:|
-| `krs` | 1.950 |
-| `nilai` | 1.950 |
-| `aktivitas_lms` | 1.950 |
-| `pembayaran` | 1.950 |
-| `kelulusan` | 345 |
 
 ### 18.1 Catatan relasi awal
 
