@@ -46,7 +46,7 @@ SELECT version();
 **Hasil eksekusi:**
 
 
-![Gambar 1. Hasil SELECT version()](gambar/unit-1.1_01.png)
+![Gambar 01.png)
 
 ### 1.2 Memeriksa database dan user aktif
 
