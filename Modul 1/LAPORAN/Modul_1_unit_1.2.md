@@ -10,7 +10,7 @@
 
 Nama       : [Siti Nuri Andriani]  
 NIM        : [240306055]  
-Program Studi : [Teknologi Informasi]  
+Program Studi : [Teknologi Infromasi]  
 Modul      : 1  
 Unit       : 1.2  
 Tanggal Praktikum : [12 November 2026]  
@@ -1541,9 +1541,9 @@ Bukti eksekusi disimpan sebagai berkas gambar terpisah pada folder `gambar/` (se
 
 | No. | Kendala | Penyebab (jika diketahui) | Solusi yang Dilakukan |
 |---:|---|---|---|
-| 1 | [Isi] | [Isi] | [Isi] |
-| 2 | [Isi] | [Isi] | [Isi] |
-| 3 | [Isi] | [Isi] | [Isi] |
+| 1 | Hasil query Soal 11 awal berupa daftar per program studi (total 3.670 baris), bukan satu angka seperti yang diminta modul. | Query memakai `LEFT JOIN` dengan `LOWER(TRIM())` sehingga variasi huruf besar/kecil dianggap cocok, dan tabel `program_studi` memuat setiap nama dua kali (12 baris untuk 6 nama) sehingga `JOIN` menggandakan record mahasiswa. | Query diganti dengan `NOT EXISTS` dan pencocokan persis (`p.nama_prodi = m.prodi_raw`) sehingga hasilnya satu angka, yaitu 435 record, dan tidak lagi terdistorsi oleh nama ganda. |
+| 2 | Query Soal 21 tidak menampilkan baris apa pun sehingga sempat dikira error. | Tidak ada kombinasi `nim`, `kode_mk`, dan `semester_id` yang muncul lebih dari satu kali, sehingga `HAVING COUNT(*) > 1` menghasilkan 0 baris. | Dilakukan pemeriksaan tambahan yang menunjukkan 57.000 record dengan kelebihan record 0, lalu hasil kosong dijelaskan di interpretasi. |
+| 3 | Gambar bukti eksekusi tidak tampil saat Markdown dibuka di GitHub. | Gambar berada di subfolder `gambar/`, sedangkan tautan menunjuk ke folder yang sama dengan berkas `.md`, dan nama berkas yang mengandung spasi tidak ditulis `%20` pada tautan. | Awalan `gambar/` ditambahkan pada semua tautan dan spasi pada nama berkas ditulis `%20`. |
 
 ## 13.3 Referensi
 
