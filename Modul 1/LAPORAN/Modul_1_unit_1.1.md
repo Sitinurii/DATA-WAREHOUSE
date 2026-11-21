@@ -605,7 +605,7 @@ LIMIT 5;
 ```sql
 SELECT 'program_studi' AS source, COUNT(*) AS rows FROM src.program_studi
 UNION ALL SELECT 'semester', COUNT(*) FROM src.semester
-UNION ALL SELECT 'mahasiswa', COUNT(*) FROM src.mahasiswa
+UNION ALL SELECT 'mahasiswa', COUNT(*) FROM src.mahasiswa 
 UNION ALL SELECT 'dosen', COUNT(*) FROM src.dosen 
 UNION ALL SELECT 'mata_kuliah', COUNT(*) FROM src.mata_kuliah
 UNION ALL SELECT 'krs', COUNT(*) FROM src.krs
