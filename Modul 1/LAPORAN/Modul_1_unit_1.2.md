@@ -8,12 +8,12 @@
 
 ## Identitas Laporan
 
-Nama       : [Siti Nuri Andriani]  
-NIM        : [240306055]  
-Program Studi : [Teknologi Infromasi]  
+Nama       : [Isi nama lengkap]  
+NIM        : [Isi NIM]  
+Program Studi : [Isi program studi]  
 Modul      : 1  
 Unit       : 1.2  
-Tanggal Praktikum : [12 November 2026]  
+Tanggal Praktikum : [Isi tanggal]  
 DBMS       : PostgreSQL 18.6  
 Database   : `uadw_lab`  
 Schema     : `src`
@@ -62,8 +62,6 @@ SELECT version();
 
 ![Memeriksa versi PostgreSQL](gambar/Memeriksa%20versi%20PostgreSQL.png)
 
-*Bukti eksekusi (file gambar): `Memeriksa versi PostgreSQL.png`*
-
 **Keterangan**
 
 Versi yang digunakan adalah **PostgreSQL 18.6** (x86_64-windows, dikompilasi dengan msvc-19.44.35228, 64-bit). Hasil ini menegaskan bahwa DBMS praktikum adalah PostgreSQL sesuai ketentuan.
@@ -84,8 +82,6 @@ SELECT
 **Hasil eksekusi**
 
 ![Memeriksa database dan user aktif](gambar/Memeriksa%20database%20dan%20user%20aktif.png)
-
-*Bukti eksekusi (file gambar): `Memeriksa database dan user aktif.png`*
 
 **Keterangan**
 
@@ -108,8 +104,6 @@ WHERE schema_name = 'src';
 **Hasil eksekusi**
 
 ![Memastikan schema src tersedia](gambar/Memastikan%20schema%20src%20tersedia.png)
-
-*Bukti eksekusi (file gambar): `Memastikan schema src tersedia.png`*
 
 **Keterangan**
 
@@ -166,8 +160,6 @@ SELECT 'semester', COUNT(*) FROM src.semester;
 
 ![Menghitung jumlah record setiap tabel](gambar/Menghitung%20jumlah%20record%20setiap%20tabel.png)
 
-*Bukti eksekusi (file gambar): `Menghitung jumlah record setiap tabel.png`*
-
 **Interpretasi**
 
 Total record pada sepuluh tabel adalah 326.517. Tabel dengan record terbanyak adalah `aktivitas_lms` (200.356 record, sekitar 61,36% dari total), disusul `krs` (57.025) dan `nilai` (57.000). Tabel dengan record paling sedikit adalah `semester` (8), kemudian `program_studi` (12) dan `dosen` (96). Tabel `mahasiswa` memuat 1.965 record. Gambaran ini menunjukkan dataset didominasi tabel transaksi (aktivitas LMS, KRS, nilai, pembayaran), sedangkan tabel master berukuran jauh lebih kecil.
@@ -207,8 +199,6 @@ ORDER BY table_name;
 
 ![Menghitung jumlah kolom setiap tabel](gambar/Menghitung%20jumlah%20kolom%20setiap%20tabel.png)
 
-*Bukti eksekusi (file gambar): `Menghitung jumlah kolom setiap tabel.png`*
-
 **Interpretasi**
 
 Total kolom pada sepuluh tabel adalah 76. Tabel `mahasiswa` memiliki kolom terbanyak (11), diikuti `aktivitas_lms` (9). Tabel `krs`, `nilai`, dan `pembayaran` masing-masing 8 kolom; `dosen`, `kelulusan`, dan `mata_kuliah` masing-masing 7 kolom; `semester` 6 kolom; dan `program_studi` paling sedikit dengan 5 kolom. Banyaknya kolom pada `mahasiswa` sejalan dengan banyaknya atribut mentah (`*_raw`) yang diperiksa pada soal-soal berikutnya.
@@ -241,8 +231,6 @@ FROM src.mahasiswa;
 
 ![Mengukur keunikan NIM mahasiswa](gambar/Mengukur%20keunikan%20NIM%20mahasiswa.png)
 
-*Bukti eksekusi (file gambar): `Mengukur keunikan NIM mahasiswa.png`*
-
 **Interpretasi**
 
 Terdapat 1.965 record mahasiswa, tetapi hanya 1.950 NIM yang unik, sehingga ada 15 record berlebih (sekitar 0,76% dari seluruh record). Hal ini mengindikasikan adanya NIM yang tercatat lebih dari satu kali. Pemeriksaan ini belum membuktikan bahwa record tersebut harus dihapus; atribut lain atau kemungkinan data historis perlu ditelusuri terlebih dahulu.
@@ -268,8 +256,6 @@ ORDER BY nim;
 **Hasil eksekusi**
 
 ![Mengidentifikasi NIM duplikat](gambar/Mengidentifikasi%20NIM%20duplikat.png)
-
-*Bukti eksekusi (file gambar): `Mengidentifikasi NIM duplikat.png`*
 
 **Interpretasi**
 
@@ -303,8 +289,6 @@ WHERE kota_asal_raw IS NULL
 
 ![Memeriksa data kota asal yang kosong](gambar/Memeriksa%20data%20kota%20asal%20yang%20kosong.png)
 
-*Bukti eksekusi (file gambar): `Memeriksa data kota asal yang kosong.png`*
-
 **Interpretasi**
 
 Terdapat 30 record mahasiswa (sekitar 1,53% dari 1.965) dengan `kota_asal_raw` kosong, `NULL`, atau hanya berisi spasi. Proporsinya kecil, tetapi analisis yang memakai informasi kota asal (misalnya sebaran asal daerah mahasiswa) akan kehilangan 30 mahasiswa atau perlu menyediakan kategori khusus untuk data yang belum diketahui.
@@ -329,8 +313,6 @@ ORDER BY prodi_raw;
 **Hasil eksekusi**
 
 ![Distribusi mahasiswa berdasarkan program studi](gambar/Distribusi%20mahasiswa%20berdasarkan%20program%20studi.png)
-
-*Bukti eksekusi (file gambar): `Distribusi mahasiswa berdasarkan program studi.png`*
 
 **Interpretasi**
 
@@ -357,8 +339,6 @@ FROM src.mahasiswa;
 | 30 |
 
 ![Menghitung jumlah variasi program studi](gambar/Menghitung%20jumlah%20variasi%20program%20studi.png)
-
-*Bukti eksekusi (file gambar): `Menghitung jumlah variasi program studi.png`*
 
 **Interpretasi**
 
@@ -394,8 +374,6 @@ ORDER BY jk_raw;
 
 ![Distribusi jenis kelamin mahasiswa](gambar/Distribusi%20jenis%20kelamin%20mahasiswa.png)
 
-*Bukti eksekusi (file gambar): `Distribusi jenis kelamin mahasiswa.png`*
-
 **Interpretasi**
 
 Kolom `jk_raw` memiliki 6 label untuk yang tampaknya hanya dua kategori. Berdasarkan pola penulisannya, `L`, `Laki-laki`, dan `M` kemungkinan merujuk pada kategori laki-laki (total 979 record, 49,82%), sedangkan `P`, `Perempuan`, dan `F` kemungkinan merujuk pada kategori perempuan (total 986 record, 50,18%). Ini mengindikasikan adanya perbedaan kode dan penulisan untuk kategori yang kemungkinan sama. Tidak dilakukan standardisasi pada tabel raw; pemetaan dilakukan pada tahap berikutnya.
@@ -430,8 +408,6 @@ ORDER BY status_raw;
 
 ![Distribusi status mahasiswa](gambar/Distribusi%20status%20mahasiswa.png)
 
-*Bukti eksekusi (file gambar): `Distribusi status mahasiswa.png`*
-
 **Interpretasi**
 
 Kolom `status_raw` memuat enam nilai: `Aktif` (1.567), `AKTIF` (18), satu label lain yang tampak tertulis `Aktif` (16), `cuti` (9), `Cuti` (7), dan `Lulus` (348). Label yang tampak sama (`Aktif`) muncul sebagai dua nilai terpisah, sehingga kemungkinan terdapat spasi atau karakter tersembunyi yang perlu diverifikasi. Jika dikelompokkan secara konseptual, terdapat sekitar 1.601 mahasiswa aktif (81,48%), 16 cuti (0,81%), dan 348 lulus (17,71%). Tidak ditemukan nilai status yang kosong pada hasil ini. Jumlah status `Lulus` (348) perlu dibandingkan dengan tabel `kelulusan` (347 record) pada pemeriksaan lanjutan.
@@ -456,8 +432,6 @@ ORDER BY kode_prodi_raw;
 **Hasil eksekusi**
 
 ![Distribusi kode program studi](gambar/Distribusi%20kode%20program%20studi.png)
-
-*Bukti eksekusi (file gambar): `Distribusi kode program studi.png`*
 
 **Interpretasi**
 
@@ -488,8 +462,6 @@ WHERE NOT EXISTS (
 | 435 |
 
 ![Record mahasiswa dengan prodi_raw tidak cocok persis dengan program_studi](gambar/Record%20mahasiswa%20dengan%20prodi_raw%20tidak%20cocok%20persis%20dengan%20program_studi.png)
-
-*Bukti eksekusi (file gambar): `Record mahasiswa dengan prodi_raw tidak cocok persis dengan program_studi.png`*
 
 **Interpretasi**
 
@@ -531,8 +503,6 @@ ORDER BY format_tanggal;
 
 ![Mengidentifikasi variasi format tanggal masuk](gambar/Mengidentifikasi%20variasi%20format%20tanggal%20masuk.png)
 
-*Bukti eksekusi (file gambar): `Mengidentifikasi variasi format tanggal masuk.png`*
-
 **Interpretasi**
 
 Format `YYYY-MM-DD` paling banyak digunakan (1.429 record, 72,72%), diikuti `DD/MM/YYYY` (346 record, 17,61%) dan `DD-Mon-YYYY` (190 record, 9,67%). Kategori `OTHER` bernilai 0 sehingga seluruh 1.965 record sesuai salah satu dari tiga pola. Dengan demikian terdapat tiga format berbeda pada satu kolom. Pemeriksaan pola ini belum membuktikan bahwa tanggalnya valid secara kalender, dan format `DD/MM/YYYY` dapat ambigu jika ada data yang sebenarnya berformat bulan-hari.
@@ -564,8 +534,6 @@ FROM src.krs;
 
 ![Pemeriksaan keunikan ID KRS](gambar/Pemeriksaan%20keunikan%20ID%20KRS.png)
 
-*Bukti eksekusi (file gambar): `Pemeriksaan keunikan ID KRS.png`*
-
 **Interpretasi**
 
 Jumlah record KRS (57.025) tidak sama dengan jumlah `krs_id` unik (57.000); selisihnya 25. Hal ini mengindikasikan ada `krs_id` yang tercatat lebih dari satu kali. Perlu ditelusuri apakah record yang memakai `krs_id` sama identik seluruh atributnya atau berbeda.
@@ -593,8 +561,6 @@ ORDER BY nim, kode_mk, semester_id;
 **Hasil eksekusi**
 
 ![Mengidentifikasi duplikasi data KRS](gambar/Mengidentifikasi%20duplikasi%20data%20KRS.png)
-
-*Bukti eksekusi (file gambar): `Mengidentifikasi duplikasi data KRS.png`*
 
 **Interpretasi**
 
@@ -632,8 +598,6 @@ FROM (
 
 ![Menghitung kelebihan record pada kombinasi KRS](gambar/Menghitung%20kelebihan%20record%20pada%20kombinasi%20KRS.png)
 
-*Bukti eksekusi (file gambar): `Menghitung kelebihan record pada kombinasi KRS.png`*
-
 **Interpretasi**
 
 Terdapat 25 record berlebih pada kombinasi `nim`, `kode_mk`, dan `semester_id` di tabel KRS. Karena setiap kelompok duplikat hanya berisi 2 record (Soal 14), jumlah record berlebih (25) kebetulan sama dengan jumlah kelompok duplikat (25). Angka ini tidak selalu sama pada kasus lain: kelompok dengan tiga record memiliki dua record berlebih, sehingga jumlah record berlebih tidak boleh disamakan dengan jumlah kelompok duplikat.
@@ -665,8 +629,6 @@ WHERE nilai_angka IS NULL;
 
 ![Memeriksa nilai angka yang kosong](gambar/Memeriksa%20nilai%20angka%20yang%20kosong.png)
 
-*Bukti eksekusi (file gambar): `Memeriksa nilai angka yang kosong.png`*
-
 **Interpretasi**
 
 Terdapat 20 record nilai (sekitar 0,04% dari 57.000) yang `nilai_angka`-nya kosong. Record ini tidak dapat ikut dalam perhitungan statistik nilai, sehingga analisis yang membutuhkan nilai angka harus memperlakukannya sebagai data yang belum tersedia.
@@ -694,8 +656,6 @@ WHERE nilai_angka < 0
 | 12 |
 
 ![Memeriksa nilai angka di luar rentang 0–100](gambar/Memeriksa%20nilai%20angka%20di%20luar%20rentang%200%E2%80%93100.png)
-
-*Bukti eksekusi (file gambar): `Memeriksa nilai angka di luar rentang 0–100.png`*
 
 **Interpretasi**
 
@@ -726,8 +686,6 @@ WHERE nilai_angka BETWEEN 0 AND 100;
 | 56.968 | 34,8 | 100 | 77,4 |
 
 ![Statistik nilai angka yang valid](gambar/Statistik%20nilai%20angka%20yang%20valid.png)
-
-*Bukti eksekusi (file gambar): `Statistik nilai angka yang valid.png`*
 
 **Interpretasi**
 
@@ -766,8 +724,6 @@ END;
 
 ![Memeriksa ketidaksesuaian nilai angka dan nilai huruf](gambar/Memeriksa%20ketidaksesuaian%20nilai%20angka%20dan%20nilai%20huruf.png)
 
-*Bukti eksekusi (file gambar): `Memeriksa ketidaksesuaian nilai angka dan nilai huruf.png`*
-
 **Interpretasi**
 
 Terdapat 20 record yang `nilai_huruf`-nya tidak sesuai dengan hasil konversi `nilai_angka` berdasarkan aturan modul. Jumlahnya kecil (sekitar 0,04%), tetapi record tersebut perlu ditelusuri lebih lanjut untuk mengetahui apakah kesalahan ada pada nilai angka atau nilai huruf. Record dengan `nilai_huruf` kosong tidak dihitung pada query ini.
@@ -800,8 +756,6 @@ END;
 
 ![Memeriksa kesesuaian status kelulusan](gambar/Memeriksa%20kesesuaian%20status%20kelulusan.png)
 
-*Bukti eksekusi (file gambar): `Memeriksa kesesuaian status kelulusan.png`*
-
 **Interpretasi**
 
 Hasil 0 berarti tidak ditemukan ketidaksesuaian antara `nilai_angka` dan `status_lulus` berdasarkan aturan pada soal (nilai minimal 60 berstatus `Lulus`, di bawah 60 berstatus `Tidak Lulus`), untuk record dengan nilai valid dan status terisi.
@@ -829,8 +783,6 @@ ORDER BY nim, kode_mk, semester_id;
 **Hasil eksekusi**
 
 ![Mengidentifikasi duplikasi data nilai](gambar/Mengidentifikasi%20duplikasi%20data%20nilai.png)
-
-*Bukti eksekusi (file gambar): `Mengidentifikasi duplikasi data nilai.png`*
 
 **Interpretasi**
 
@@ -867,8 +819,6 @@ WHERE NOT EXISTS (
 
 ![Memeriksa NIM KRS yang tidak terdaftar sebagai mahasiswa](gambar/Memeriksa%20NIM%20KRS%20yang%20tidak%20terdaftar%20sebagai%20mahasiswa.png)
 
-*Bukti eksekusi (file gambar): `Memeriksa NIM KRS yang tidak terdaftar sebagai mahasiswa.png`*
-
 **Interpretasi**
 
 Hasil 0 berarti seluruh NIM pada tabel KRS ditemukan pada tabel `mahasiswa`; tidak ditemukan masalah referensial pada relasi ini.
@@ -899,8 +849,6 @@ WHERE NOT EXISTS (
 | 0 |
 
 ![Memeriksa NIM pada tabel nilai yang tidak terdaftar sebagai mahasiswa](gambar/Memeriksa%20NIM%20pada%20tabel%20nilai%20yang%20tidak%20terdaftar%20sebagai%20mahasiswa.png)
-
-*Bukti eksekusi (file gambar): `Memeriksa NIM pada tabel nilai yang tidak terdaftar sebagai mahasiswa.png`*
 
 **Interpretasi**
 
@@ -933,8 +881,6 @@ WHERE NOT EXISTS (
 
 ![Memeriksa kode mata kuliah yang tidak memiliki referensi](gambar/Memeriksa%20kode%20mata%20kuliah%20yang%20tidak%20memiliki%20referensi.png)
 
-*Bukti eksekusi (file gambar): `Memeriksa kode mata kuliah yang tidak memiliki referensi.png`*
-
 **Interpretasi**
 
 Hasil 0 berarti seluruh `kode_mk` pada tabel `nilai` memiliki referensi pada tabel `mata_kuliah`.
@@ -965,8 +911,6 @@ WHERE NOT EXISTS (
 | 0 |
 
 ![Memeriksa semester nilai yang tidak memiliki referensi](gambar/Memeriksa%20semester%20nilai%20yang%20tidak%20memiliki%20referensi.png)
-
-*Bukti eksekusi (file gambar): `Memeriksa semester nilai yang tidak memiliki referensi.png`*
 
 **Interpretasi**
 
@@ -999,8 +943,6 @@ FROM src.aktivitas_lms;
 | 200.356 | 200.326 | 30 |
 
 ![Mengukur duplikasi aktivitas LMS](gambar/Mengukur%20duplikasi%20aktivitas%20LMS.png)
-
-*Bukti eksekusi (file gambar): `Mengukur duplikasi aktivitas LMS.png`*
 
 **Interpretasi**
 
@@ -1035,8 +977,6 @@ ORDER BY tipe_event;
 
 ![Menganalisis distribusi tipe aktivitas LMS](gambar/Menganalisis%20distribusi%20tipe%20aktivitas%20LMS.png)
 
-*Bukti eksekusi (file gambar): `Menganalisis distribusi tipe aktivitas LMS.png`*
-
 **Interpretasi**
 
 Terdapat lima tipe aktivitas. Tipe terbanyak adalah `view_material` (56.040; 27,97%), diikuti `login` (50.136; 25,02%), `assignment_submit` (43.859; 21,89%), dan `quiz_attempt` (40.321; 20,12%). Tipe paling sedikit adalah `forum_post` (10.000; 4,99%). Komposisi ini menunjukkan aktivitas LMS didominasi melihat materi dan login, sedangkan partisipasi forum paling rendah.
@@ -1065,8 +1005,6 @@ WHERE tipe_event = 'quiz_attempt'
 
 ![Memeriksa nilai quiz attempt yang kosong](gambar/Memeriksa%20nilai%20quiz%20attempt%20yang%20kosong.png)
 
-*Bukti eksekusi (file gambar): `Memeriksa nilai quiz attempt yang kosong.png`*
-
 **Interpretasi**
 
 Hasil 0 berarti seluruh aktivitas `quiz_attempt` (40.321 record) memiliki nilai pada `skor_kuis`; tidak ditemukan skor kuis yang kosong.
@@ -1094,8 +1032,6 @@ WHERE tipe_event <> 'quiz_attempt'
 | 0 |
 
 ![Aktivitas Non-Quiz yang Memiliki Skor](gambar/Aktivitas%20Non-Quiz%20yang%20Memiliki%20Skor.png)
-
-*Bukti eksekusi (file gambar): `Aktivitas Non-Quiz yang Memiliki Skor.png`*
 
 **Interpretasi**
 
@@ -1128,8 +1064,6 @@ WHERE nominal_bayar < 0;
 
 ![Pembayaran dengan Nominal Negatif](gambar/Pembayaran%20dengan%20Nominal%20Negatif.png)
 
-*Bukti eksekusi (file gambar): `Pembayaran dengan Nominal Negatif.png`*
-
 **Interpretasi**
 
 Terdapat 5 record pembayaran (sekitar 0,05% dari 9.500) dengan `nominal_bayar` negatif. Transaksi ini perlu ditelusuri sesuai konteks pencatatan keuangan (misalnya koreksi atau pengembalian dana) sebelum dinilai sebagai kesalahan data.
@@ -1161,8 +1095,6 @@ WHERE nominal_bayar > 0
 
 ![Tanggal Pembayaran Positif yang Kosong](gambar/Tanggal%20Pembayaran%20Positif%20yang%20Kosong.png)
 
-*Bukti eksekusi (file gambar): `Tanggal Pembayaran Positif yang Kosong.png`*
-
 **Interpretasi**
 
 Terdapat 12 transaksi pembayaran bernominal positif (sekitar 0,13% dari 9.500) yang `tanggal_bayar_raw`-nya kosong, `NULL`, atau hanya berisi spasi. Transaksi ini belum dapat dianalisis berdasarkan waktu pembayaran.
@@ -1193,8 +1125,6 @@ ORDER BY jumlah DESC, status_pembayaran;
 | `Belum Lunas` | 461 |
 
 ![Distribusi Status Pembayaran](gambar/Distribusi%20Status%20Pembayaran.png)
-
-*Bukti eksekusi (file gambar): `Distribusi Status Pembayaran.png`*
 
 **Interpretasi**
 
@@ -1228,8 +1158,6 @@ FROM src.kelulusan;
 
 ![Memeriksa Duplikasi Data Kelulusan](gambar/Memeriksa%20Duplikasi%20Data%20Kelulusan.png)
 
-*Bukti eksekusi (file gambar): `Memeriksa Duplikasi Data Kelulusan.png`*
-
 **Interpretasi**
 
 Terdapat 347 record kelulusan dengan 345 NIM unik, sehingga ada 2 record berlebih (sekitar 0,58%). Artinya ada NIM yang memiliki lebih dari satu record kelulusan. Konteks bisnis perlu diperiksa terlebih dahulu sebelum menganggapnya sebagai duplikasi yang tidak sah.
@@ -1258,8 +1186,6 @@ ORDER BY jumlah DESC;
 | `Ya` | 347 |
 
 ![Distribusi Status Kelulusan Tepat Waktu](gambar/Distribusi%20Status%20Kelulusan%20Tepat%20Waktu.png)
-
-*Bukti eksekusi (file gambar): `Distribusi Status Kelulusan Tepat Waktu.png`*
 
 **Interpretasi**
 
@@ -1294,8 +1220,6 @@ WHERE m.nim IS NULL;
 
 ![Aktivitas LMS dengan NIM Tidak Terdaftar](gambar/Aktivitas%20LMS%20dengan%20NIM%20Tidak%20Terdaftar.png)
 
-*Bukti eksekusi (file gambar): `Aktivitas LMS dengan NIM Tidak Terdaftar.png`*
-
 **Interpretasi**
 
 Hasil 0 berarti seluruh aktivitas LMS dapat dihubungkan dengan mahasiswa yang terdaftar pada tabel `mahasiswa`.
@@ -1324,8 +1248,6 @@ WHERE mk.kode_mk IS NULL;
 | 0 |
 
 ![Aktivitas LMS dengan Mata Kuliah Tidak Terdaftar](gambar/Aktivitas%20LMS%20dengan%20Mata%20Kuliah%20Tidak%20Terdaftar.png)
-
-*Bukti eksekusi (file gambar): `Aktivitas LMS dengan Mata Kuliah Tidak Terdaftar.png`*
 
 **Interpretasi**
 
@@ -1356,8 +1278,6 @@ WHERE m.nim IS NULL;
 
 ![Pembayaran dengan NIM Tidak Terdaftar](gambar/Pembayaran%20dengan%20NIM%20Tidak%20Terdaftar.png)
 
-*Bukti eksekusi (file gambar): `Pembayaran dengan NIM Tidak Terdaftar.png`*
-
 **Interpretasi**
 
 Hasil 0 berarti seluruh transaksi pembayaran terhubung dengan data mahasiswa pada tabel `mahasiswa`.
@@ -1386,8 +1306,6 @@ WHERE m.nim IS NULL;
 | 0 |
 
 ![Data Kelulusan dengan NIM Tidak Terdaftar](gambar/Data%20Kelulusan%20dengan%20NIM%20Tidak%20Terdaftar.png)
-
-*Bukti eksekusi (file gambar): `Data Kelulusan dengan NIM Tidak Terdaftar.png`*
 
 **Interpretasi**
 
