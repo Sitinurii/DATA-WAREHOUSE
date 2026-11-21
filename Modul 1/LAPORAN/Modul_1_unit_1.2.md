@@ -8,12 +8,12 @@
 
 ## Identitas Laporan
 
-Nama       : [Isi nama lengkap]  
-NIM        : [Isi NIM]  
-Program Studi : [Isi program studi]  
+Nama       : [Siti Nuri Andriani]  
+NIM        : [240306055]  
+Program Studi : [Teknologi informasi]  
 Modul      : 1  
 Unit       : 1.2  
-Tanggal Praktikum : [Isi tanggal]  
+Tanggal Praktikum : [12 November 2026]  
 DBMS       : PostgreSQL 18.6  
 Database   : `uadw_lab`  
 Schema     : `src`
@@ -147,7 +147,7 @@ SELECT 'semester', COUNT(*) FROM src.semester;
 
 | Dataset | Jumlah Record |
 |---|---:|
-| `program_studi` | 12 |
+| `program_studi` | 6 |
 | `semester` | 8 |
 | `mahasiswa` | 1.965 |
 | `dosen` | 96 |
@@ -162,7 +162,7 @@ SELECT 'semester', COUNT(*) FROM src.semester;
 
 **Interpretasi**
 
-Total record pada sepuluh tabel adalah 326.517. Tabel dengan record terbanyak adalah `aktivitas_lms` (200.356 record, sekitar 61,36% dari total), disusul `krs` (57.025) dan `nilai` (57.000). Tabel dengan record paling sedikit adalah `semester` (8), kemudian `program_studi` (12) dan `dosen` (96). Tabel `mahasiswa` memuat 1.965 record. Gambaran ini menunjukkan dataset didominasi tabel transaksi (aktivitas LMS, KRS, nilai, pembayaran), sedangkan tabel master berukuran jauh lebih kecil.
+Total record pada sepuluh tabel adalah 326.511. Tabel dengan record terbanyak adalah `aktivitas_lms` (200.356 record, sekitar 61,36% dari total), disusul `krs` (57.025) dan `nilai` (57.000). Tabel dengan record paling sedikit adalah `program_studi` (6), kemudian `semester` (8) dan `dosen` (96). Tabel `mahasiswa` memuat 1.965 record. Gambaran ini menunjukkan dataset didominasi tabel transaksi (aktivitas LMS, KRS, nilai, pembayaran), sedangkan tabel master berukuran jauh lebih kecil.
 
 ## 2.2 Soal 2 — Menghitung jumlah kolom setiap tabel
 
@@ -465,7 +465,7 @@ WHERE NOT EXISTS (
 
 **Interpretasi**
 
-Terdapat 435 dari 1.965 record mahasiswa (22,14%) yang `prodi_raw`-nya tidak cocok persis dengan `program_studi.nama_prodi`; sisanya 1.530 record (77,86%) cocok persis. Dari 435 record tersebut, 175 record (8,91%) hanya berbeda penulisan (huruf besar/kecil, misalnya `BISNIS DIGITAL`, `informatika`, `Sains data`), sedangkan 260 record (13,23%) tidak memiliki padanan sama sekali, misalnya singkatan (`BD`, `DS`, `IF`, `TI`, `TR`, `TRK`) dan penulisan lain (`Sist. Informasi`, `Tek. Informasi`, `Teknik Informatika`). Ketidakcocokan persis dapat disebabkan variasi penulisan, singkatan, spasi, atau nilai yang memang tidak dikenal, sehingga diperlukan pemeriksaan lebih lanjut untuk memastikan penyebabnya. Selain itu, tabel `program_studi` memuat setiap nama program studi dua kali (12 baris untuk 6 nama), sehingga `JOIN` biasa akan menggandakan record mahasiswa; pemeriksaan ini memakai `NOT EXISTS` agar hasil tidak terdistorsi.
+Terdapat 435 dari 1.965 record mahasiswa (22,14%) yang `prodi_raw`-nya tidak cocok persis dengan `program_studi.nama_prodi`; sisanya 1.530 record (77,86%) cocok persis. Dari 435 record tersebut, 175 record (8,91%) hanya berbeda penulisan (huruf besar/kecil, misalnya `BISNIS DIGITAL`, `informatika`, `Sains data`), sedangkan 260 record (13,23%) tidak memiliki padanan sama sekali, misalnya singkatan (`BD`, `DS`, `IF`, `TI`, `TR`, `TRK`) dan penulisan lain (`Sist. Informasi`, `Tek. Informasi`, `Teknik Informatika`). Ketidakcocokan persis dapat disebabkan variasi penulisan, singkatan, spasi, atau nilai yang memang tidak dikenal, sehingga diperlukan pemeriksaan lebih lanjut untuk memastikan penyebabnya. Pemeriksaan ini memakai `NOT EXISTS` dengan pencocokan persis agar setiap record mahasiswa dihitung satu kali.
 
 ## 3.10 Soal 12 — Mengidentifikasi variasi format tanggal masuk
 
@@ -1319,14 +1319,14 @@ Isikan ringkasan hasil dari seluruh pemeriksaan. Kolom status dapat menggunakan 
 
 | No. | Area Pemeriksaan | Indikator | Hasil | Status | Catatan Temuan |
 |---:|---|---|---:|---|---|
-| 1 | Dataset | Jumlah record setiap tabel | 326.517 record (10 tabel) | Tidak ditemukan masalah | Terbanyak `aktivitas_lms` (200.356), tersedikit `semester` (8) |
+| 1 | Dataset | Jumlah record setiap tabel | 326.511 record (10 tabel) | Tidak ditemukan masalah | Terbanyak `aktivitas_lms` (200.356), tersedikit `semester` (8) |
 | 2 | Dataset | Jumlah kolom setiap tabel | 76 kolom (10 tabel) | Tidak ditemukan masalah | Terbanyak `mahasiswa` (11), tersedikit `program_studi` (5) |
 | 3 | Mahasiswa | Kelebihan record berdasarkan NIM | 15 | Perlu pemeriksaan | 1.965 record vs 1.950 NIM unik |
 | 4 | Mahasiswa | Kelompok NIM duplikat | 15 kelompok | Perlu pemeriksaan | Seluruh kelompok muncul tepat 2 kali |
 | 5 | Mahasiswa | Kota asal kosong | 30 | Perlu pemeriksaan | Sekitar 1,53% dari 1.965 record |
 | 6 | Mahasiswa | Variasi label program studi | 30 label | Perlu pemeriksaan | Hanya 6 prodi resmi; variasi huruf, singkatan, dan penulisan lain |
 | 7 | Mahasiswa | Variasi label jenis kelamin | 6 label | Perlu pemeriksaan | `L`/`Laki-laki`/`M` dan `P`/`Perempuan`/`F` kemungkinan kategori sama |
-| 8 | Mahasiswa | Program studi tidak cocok dengan referensi | 435 | Perlu pemeriksaan | 175 beda penulisan, 260 tidak dikenal; `program_studi` memuat nama ganda |
+| 8 | Mahasiswa | Program studi tidak cocok dengan referensi | 435 | Perlu pemeriksaan | 175 beda penulisan, 260 tidak dikenal |
 | 9 | Mahasiswa | Variasi format tanggal masuk | 3 format | Perlu pemeriksaan | `YYYY-MM-DD` 1.429, `DD/MM/YYYY` 346, `DD-Mon-YYYY` 190, `OTHER` 0 |
 | 10 | KRS | Kelebihan record berdasarkan KRS ID | 25 | Perlu pemeriksaan | 57.025 record vs 57.000 `krs_id` unik |
 | 11 | KRS | Duplikasi kombinasi NIM–MK–semester | 25 kombinasi (25 record berlebih) | Perlu pemeriksaan | Seluruh kombinasi muncul tepat 2 kali |
@@ -1364,7 +1364,7 @@ Berdasarkan seluruh query dan hasil pemeriksaan yang telah dilakukan, tuliskan k
 
 1. Bagaimana gambaran umum struktur dan ukuran dataset akademik yang diperiksa?
 
-   Dataset terdiri atas 10 tabel dengan total 326.517 record dan 76 kolom. Ukurannya didominasi tabel transaksi: `aktivitas_lms` (200.356 record), `krs` (57.025), `nilai` (57.000), dan `pembayaran` (9.500). Tabel master jauh lebih kecil, misalnya `mahasiswa` (1.965), `kelulusan` (347), `mata_kuliah` (208), `dosen` (96), `semester` (8), dan `program_studi` (12). Tabel `mahasiswa` memiliki kolom terbanyak (11).
+   Dataset terdiri atas 10 tabel dengan total 326.511 record dan 76 kolom. Ukurannya didominasi tabel transaksi: `aktivitas_lms` (200.356 record), `krs` (57.025), `nilai` (57.000), dan `pembayaran` (9.500). Tabel master jauh lebih kecil, misalnya `mahasiswa` (1.965), `kelulusan` (347), `mata_kuliah` (208), `dosen` (96), `semester` (8), dan `program_studi` (6). Tabel `mahasiswa` memiliki kolom terbanyak (11).
 
 2. Aspek kualitas data apa saja yang menunjukkan indikasi masalah?
 
@@ -1400,7 +1400,7 @@ Tuliskan maksimal lima temuan utama berdasarkan hasil praktikum.
 Tuliskan rekomendasi langkah pemeriksaan lanjutan. Pada tahap ini, rekomendasi tidak berarti langsung mengubah atau menghapus data pada source layer.
 
 1. Telusuri kelompok duplikat pada `mahasiswa`, `krs`, `aktivitas_lms`, dan `kelulusan` dengan membandingkan atribut lain (misalnya nama, tanggal, status, atau timestamp) untuk membedakan duplikasi dengan data historis atau transaksi yang sah.
-2. Susun tabel pemetaan (*mapping*) untuk program studi, jenis kelamin, status, kode program studi, dan format tanggal di layer berikutnya (bukan pada `src`), serta periksa penyebab nama program studi yang muncul dua kali pada `program_studi`.
+2. Susun tabel pemetaan (*mapping*) untuk program studi, jenis kelamin, status, kode program studi, dan format tanggal di layer berikutnya (bukan pada `src`).
 3. Konfirmasi dengan pemilik data atau aturan bisnis terkait nilai kosong, nilai di luar rentang, ketidaksesuaian nilai huruf, pembayaran negatif, pembayaran tanpa tanggal, serta status kelulusan tepat waktu yang seluruhnya `Ya`.
 
 ---
@@ -1459,7 +1459,7 @@ Bukti eksekusi disimpan sebagai berkas gambar terpisah pada folder `gambar/` (se
 
 | No. | Kendala | Penyebab (jika diketahui) | Solusi yang Dilakukan |
 |---:|---|---|---|
-| 1 | Hasil query Soal 11 awal berupa daftar per program studi (total 3.670 baris), bukan satu angka seperti yang diminta modul. | Query memakai `LEFT JOIN` dengan `LOWER(TRIM())` sehingga variasi huruf besar/kecil dianggap cocok, dan tabel `program_studi` memuat setiap nama dua kali (12 baris untuk 6 nama) sehingga `JOIN` menggandakan record mahasiswa. | Query diganti dengan `NOT EXISTS` dan pencocokan persis (`p.nama_prodi = m.prodi_raw`) sehingga hasilnya satu angka, yaitu 435 record, dan tidak lagi terdistorsi oleh nama ganda. |
+| 1 | Hasil query Soal 11 awal berupa daftar per program studi (total 3.670 baris, lebih besar dari 1.965 mahasiswa), bukan satu angka seperti yang diminta modul. Jumlah record `program_studi` juga tercatat 12, bukan 6 sesuai acuan. | Query memakai `LEFT JOIN` dengan `LOWER(TRIM())`, sehingga variasi huruf besar/kecil dianggap cocok. Selain itu, file `program_studi.csv` terimpor dua kali sehingga setiap nama program studi muncul dua kali dan `JOIN` menggandakan record mahasiswa. | Query diganti dengan `NOT EXISTS` dan pencocokan persis (`p.nama_prodi = m.prodi_raw`) sehingga hasilnya satu angka, yaitu 435 record. Tabel `program_studi` dikosongkan dengan `TRUNCATE` lalu diimpor ulang satu kali (menjadi 6 baris, sesuai acuan); setelah itu hasil Soal 1 diambil ulang. |
 | 2 | Query Soal 21 tidak menampilkan baris apa pun sehingga sempat dikira error. | Tidak ada kombinasi `nim`, `kode_mk`, dan `semester_id` yang muncul lebih dari satu kali, sehingga `HAVING COUNT(*) > 1` menghasilkan 0 baris. | Dilakukan pemeriksaan tambahan yang menunjukkan 57.000 record dengan kelebihan record 0, lalu hasil kosong dijelaskan di interpretasi. |
 | 3 | Gambar bukti eksekusi tidak tampil saat Markdown dibuka di GitHub. | Gambar berada di subfolder `gambar/`, sedangkan tautan menunjuk ke folder yang sama dengan berkas `.md`, dan nama berkas yang mengandung spasi tidak ditulis `%20` pada tautan. | Awalan `gambar/` ditambahkan pada semua tautan dan spasi pada nama berkas ditulis `%20`. |
 
