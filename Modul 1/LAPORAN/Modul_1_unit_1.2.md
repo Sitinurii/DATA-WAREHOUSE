@@ -8,12 +8,12 @@
 
 ## Identitas Laporan
 
-Nama       : [Siti Nuri Andriani]  
-NIM        : [240306055]  
-Program Studi : [Teknologi Informasi]  
+Nama       : [Isi nama lengkap]  
+NIM        : [Isi NIM]  
+Program Studi : [Isi program studi]  
 Modul      : 1  
 Unit       : 1.2  
-Tanggal Praktikum : [12 November 2026]  
+Tanggal Praktikum : [Isi tanggal]  
 DBMS       : PostgreSQL 18.6  
 Database   : `uadw_lab`  
 Schema     : `src`
@@ -60,7 +60,7 @@ SELECT version();
 
 **Hasil eksekusi**
 
-![Memeriksa versi PostgreSQL](Memeriksa versi PostgreSQL.png)
+![Memeriksa versi PostgreSQL](gambar/Memeriksa%20versi%20PostgreSQL.png)
 
 *Bukti eksekusi (file gambar): `Memeriksa versi PostgreSQL.png`*
 
@@ -83,7 +83,7 @@ SELECT
 
 **Hasil eksekusi**
 
-![Memeriksa database dan user aktif](Memeriksa%20database%20dan%20user%20aktif.png)
+![Memeriksa database dan user aktif](gambar/Memeriksa%20database%20dan%20user%20aktif.png)
 
 *Bukti eksekusi (file gambar): `Memeriksa database dan user aktif.png`*
 
@@ -107,7 +107,7 @@ WHERE schema_name = 'src';
 
 **Hasil eksekusi**
 
-![Memastikan schema src tersedia](Memastikan%20schema%20src%20tersedia.png)
+![Memastikan schema src tersedia](gambar/Memastikan%20schema%20src%20tersedia.png)
 
 *Bukti eksekusi (file gambar): `Memastikan schema src tersedia.png`*
 
@@ -164,7 +164,7 @@ SELECT 'semester', COUNT(*) FROM src.semester;
 | `pembayaran` | 9.500 |
 | `kelulusan` | 347 |
 
-![Menghitung jumlah record setiap tabel](Menghitung%20jumlah%20record%20setiap%20tabel.png)
+![Menghitung jumlah record setiap tabel](gambar/Menghitung%20jumlah%20record%20setiap%20tabel.png)
 
 *Bukti eksekusi (file gambar): `Menghitung jumlah record setiap tabel.png`*
 
@@ -205,7 +205,7 @@ ORDER BY table_name;
 | `pembayaran` | 8 |
 | `kelulusan` | 7 |
 
-![Menghitung jumlah kolom setiap tabel](Menghitung%20jumlah%20kolom%20setiap%20tabel.png)
+![Menghitung jumlah kolom setiap tabel](gambar/Menghitung%20jumlah%20kolom%20setiap%20tabel.png)
 
 *Bukti eksekusi (file gambar): `Menghitung jumlah kolom setiap tabel.png`*
 
@@ -239,7 +239,7 @@ FROM src.mahasiswa;
 |---:|---:|---:|
 | 1.965 | 1.950 | 15 |
 
-![Mengukur keunikan NIM mahasiswa](Mengukur%20keunikan%20NIM%20mahasiswa.png)
+![Mengukur keunikan NIM mahasiswa](gambar/Mengukur%20keunikan%20NIM%20mahasiswa.png)
 
 *Bukti eksekusi (file gambar): `Mengukur keunikan NIM mahasiswa.png`*
 
@@ -267,7 +267,7 @@ ORDER BY nim;
 
 **Hasil eksekusi**
 
-![Mengidentifikasi NIM duplikat](Mengidentifikasi%20NIM%20duplikat.png)
+![Mengidentifikasi NIM duplikat](gambar/Mengidentifikasi%20NIM%20duplikat.png)
 
 *Bukti eksekusi (file gambar): `Mengidentifikasi NIM duplikat.png`*
 
@@ -301,7 +301,7 @@ WHERE kota_asal_raw IS NULL
 |---:|
 | 30 |
 
-![Memeriksa data kota asal yang kosong](Memeriksa%20data%20kota%20asal%20yang%20kosong.png)
+![Memeriksa data kota asal yang kosong](gambar/Memeriksa%20data%20kota%20asal%20yang%20kosong.png)
 
 *Bukti eksekusi (file gambar): `Memeriksa data kota asal yang kosong.png`*
 
@@ -328,7 +328,7 @@ ORDER BY prodi_raw;
 
 **Hasil eksekusi**
 
-![Distribusi mahasiswa berdasarkan program studi](Distribusi%20mahasiswa%20berdasarkan%20program%20studi.png)
+![Distribusi mahasiswa berdasarkan program studi](gambar/Distribusi%20mahasiswa%20berdasarkan%20program%20studi.png)
 
 *Bukti eksekusi (file gambar): `Distribusi mahasiswa berdasarkan program studi.png`*
 
@@ -356,7 +356,7 @@ FROM src.mahasiswa;
 |---:|
 | 30 |
 
-![Menghitung jumlah variasi program studi](Menghitung%20jumlah%20variasi%20program%20studi.png)
+![Menghitung jumlah variasi program studi](gambar/Menghitung%20jumlah%20variasi%20program%20studi.png)
 
 *Bukti eksekusi (file gambar): `Menghitung jumlah variasi program studi.png`*
 
@@ -392,7 +392,7 @@ ORDER BY jk_raw;
 | `P` | 764 |
 | `Perempuan` | 183 |
 
-![Distribusi jenis kelamin mahasiswa](Distribusi%20jenis%20kelamin%20mahasiswa.png)
+![Distribusi jenis kelamin mahasiswa](gambar/Distribusi%20jenis%20kelamin%20mahasiswa.png)
 
 *Bukti eksekusi (file gambar): `Distribusi jenis kelamin mahasiswa.png`*
 
@@ -428,7 +428,7 @@ ORDER BY status_raw;
 | `Cuti` | 7 |
 | `Lulus` | 348 |
 
-![Distribusi status mahasiswa](Distribusi%20status%20mahasiswa.png)
+![Distribusi status mahasiswa](gambar/Distribusi%20status%20mahasiswa.png)
 
 *Bukti eksekusi (file gambar): `Distribusi status mahasiswa.png`*
 
@@ -455,7 +455,7 @@ ORDER BY kode_prodi_raw;
 
 **Hasil eksekusi**
 
-![Distribusi kode program studi](Distribusi%20kode%20program%20studi.png)
+![Distribusi kode program studi](gambar/Distribusi%20kode%20program%20studi.png)
 
 *Bukti eksekusi (file gambar): `Distribusi kode program studi.png`*
 
@@ -487,7 +487,7 @@ WHERE NOT EXISTS (
 |---:|
 | 435 |
 
-![Record mahasiswa dengan prodi_raw tidak cocok persis dengan program_studi](Record%20mahasiswa%20dengan%20prodi_raw%20tidak%20cocok%20persis%20dengan%20program_studi.png)
+![Record mahasiswa dengan prodi_raw tidak cocok persis dengan program_studi](gambar/Record%20mahasiswa%20dengan%20prodi_raw%20tidak%20cocok%20persis%20dengan%20program_studi.png)
 
 *Bukti eksekusi (file gambar): `Record mahasiswa dengan prodi_raw tidak cocok persis dengan program_studi.png`*
 
@@ -529,7 +529,7 @@ ORDER BY format_tanggal;
 | `DD-Mon-YYYY` | 190 |
 | `OTHER` | 0 |
 
-![Mengidentifikasi variasi format tanggal masuk](Mengidentifikasi%20variasi%20format%20tanggal%20masuk.png)
+![Mengidentifikasi variasi format tanggal masuk](gambar/Mengidentifikasi%20variasi%20format%20tanggal%20masuk.png)
 
 *Bukti eksekusi (file gambar): `Mengidentifikasi variasi format tanggal masuk.png`*
 
@@ -562,7 +562,7 @@ FROM src.krs;
 |---:|---:|
 | 57.025 | 57.000 |
 
-![Pemeriksaan keunikan ID KRS](Pemeriksaan%20keunikan%20ID%20KRS.png)
+![Pemeriksaan keunikan ID KRS](gambar/Pemeriksaan%20keunikan%20ID%20KRS.png)
 
 *Bukti eksekusi (file gambar): `Pemeriksaan keunikan ID KRS.png`*
 
@@ -592,7 +592,7 @@ ORDER BY nim, kode_mk, semester_id;
 
 **Hasil eksekusi**
 
-![Mengidentifikasi duplikasi data KRS](Mengidentifikasi%20duplikasi%20data%20KRS.png)
+![Mengidentifikasi duplikasi data KRS](gambar/Mengidentifikasi%20duplikasi%20data%20KRS.png)
 
 *Bukti eksekusi (file gambar): `Mengidentifikasi duplikasi data KRS.png`*
 
@@ -630,7 +630,7 @@ FROM (
 |---:|
 | 25 |
 
-![Menghitung kelebihan record pada kombinasi KRS](Menghitung%20kelebihan%20record%20pada%20kombinasi%20KRS.png)
+![Menghitung kelebihan record pada kombinasi KRS](gambar/Menghitung%20kelebihan%20record%20pada%20kombinasi%20KRS.png)
 
 *Bukti eksekusi (file gambar): `Menghitung kelebihan record pada kombinasi KRS.png`*
 
@@ -663,7 +663,7 @@ WHERE nilai_angka IS NULL;
 |---:|
 | 20 |
 
-![Memeriksa nilai angka yang kosong](Memeriksa%20nilai%20angka%20yang%20kosong.png)
+![Memeriksa nilai angka yang kosong](gambar/Memeriksa%20nilai%20angka%20yang%20kosong.png)
 
 *Bukti eksekusi (file gambar): `Memeriksa nilai angka yang kosong.png`*
 
@@ -693,7 +693,7 @@ WHERE nilai_angka < 0
 |---:|
 | 12 |
 
-![Memeriksa nilai angka di luar rentang 0–100](Memeriksa%20nilai%20angka%20di%20luar%20rentang%200%E2%80%93100.png)
+![Memeriksa nilai angka di luar rentang 0–100](gambar/Memeriksa%20nilai%20angka%20di%20luar%20rentang%200%E2%80%93100.png)
 
 *Bukti eksekusi (file gambar): `Memeriksa nilai angka di luar rentang 0–100.png`*
 
@@ -725,7 +725,7 @@ WHERE nilai_angka BETWEEN 0 AND 100;
 |---:|---:|---:|---:|
 | 56.968 | 34,8 | 100 | 77,4 |
 
-![Statistik nilai angka yang valid](Statistik%20nilai%20angka%20yang%20valid.png)
+![Statistik nilai angka yang valid](gambar/Statistik%20nilai%20angka%20yang%20valid.png)
 
 *Bukti eksekusi (file gambar): `Statistik nilai angka yang valid.png`*
 
@@ -764,7 +764,7 @@ END;
 |---:|
 | 20 |
 
-![Memeriksa ketidaksesuaian nilai angka dan nilai huruf](Memeriksa%20ketidaksesuaian%20nilai%20angka%20dan%20nilai%20huruf.png)
+![Memeriksa ketidaksesuaian nilai angka dan nilai huruf](gambar/Memeriksa%20ketidaksesuaian%20nilai%20angka%20dan%20nilai%20huruf.png)
 
 *Bukti eksekusi (file gambar): `Memeriksa ketidaksesuaian nilai angka dan nilai huruf.png`*
 
@@ -798,7 +798,7 @@ END;
 |---:|
 | 0 |
 
-![Memeriksa kesesuaian status kelulusan](Memeriksa%20kesesuaian%20status%20kelulusan.png)
+![Memeriksa kesesuaian status kelulusan](gambar/Memeriksa%20kesesuaian%20status%20kelulusan.png)
 
 *Bukti eksekusi (file gambar): `Memeriksa kesesuaian status kelulusan.png`*
 
@@ -828,7 +828,7 @@ ORDER BY nim, kode_mk, semester_id;
 
 **Hasil eksekusi**
 
-![Mengidentifikasi duplikasi data nilai](Mengidentifikasi%20duplikasi%20data%20nilai.png)
+![Mengidentifikasi duplikasi data nilai](gambar/Mengidentifikasi%20duplikasi%20data%20nilai.png)
 
 *Bukti eksekusi (file gambar): `Mengidentifikasi duplikasi data nilai.png`*
 
@@ -865,7 +865,7 @@ WHERE NOT EXISTS (
 |---:|
 | 0 |
 
-![Memeriksa NIM KRS yang tidak terdaftar sebagai mahasiswa](Memeriksa%20NIM%20KRS%20yang%20tidak%20terdaftar%20sebagai%20mahasiswa.png)
+![Memeriksa NIM KRS yang tidak terdaftar sebagai mahasiswa](gambar/Memeriksa%20NIM%20KRS%20yang%20tidak%20terdaftar%20sebagai%20mahasiswa.png)
 
 *Bukti eksekusi (file gambar): `Memeriksa NIM KRS yang tidak terdaftar sebagai mahasiswa.png`*
 
@@ -898,7 +898,7 @@ WHERE NOT EXISTS (
 |---:|
 | 0 |
 
-![Memeriksa NIM pada tabel nilai yang tidak terdaftar sebagai mahasiswa](Memeriksa%20NIM%20pada%20tabel%20nilai%20yang%20tidak%20terdaftar%20sebagai%20mahasiswa.png)
+![Memeriksa NIM pada tabel nilai yang tidak terdaftar sebagai mahasiswa](gambar/Memeriksa%20NIM%20pada%20tabel%20nilai%20yang%20tidak%20terdaftar%20sebagai%20mahasiswa.png)
 
 *Bukti eksekusi (file gambar): `Memeriksa NIM pada tabel nilai yang tidak terdaftar sebagai mahasiswa.png`*
 
@@ -931,7 +931,7 @@ WHERE NOT EXISTS (
 |---:|
 | 0 |
 
-![Memeriksa kode mata kuliah yang tidak memiliki referensi](Memeriksa%20kode%20mata%20kuliah%20yang%20tidak%20memiliki%20referensi.png)
+![Memeriksa kode mata kuliah yang tidak memiliki referensi](gambar/Memeriksa%20kode%20mata%20kuliah%20yang%20tidak%20memiliki%20referensi.png)
 
 *Bukti eksekusi (file gambar): `Memeriksa kode mata kuliah yang tidak memiliki referensi.png`*
 
@@ -964,7 +964,7 @@ WHERE NOT EXISTS (
 |---:|
 | 0 |
 
-![Memeriksa semester nilai yang tidak memiliki referensi](Memeriksa%20semester%20nilai%20yang%20tidak%20memiliki%20referensi.png)
+![Memeriksa semester nilai yang tidak memiliki referensi](gambar/Memeriksa%20semester%20nilai%20yang%20tidak%20memiliki%20referensi.png)
 
 *Bukti eksekusi (file gambar): `Memeriksa semester nilai yang tidak memiliki referensi.png`*
 
@@ -998,7 +998,7 @@ FROM src.aktivitas_lms;
 |---:|---:|---:|
 | 200.356 | 200.326 | 30 |
 
-![Mengukur duplikasi aktivitas LMS](Mengukur%20duplikasi%20aktivitas%20LMS.png)
+![Mengukur duplikasi aktivitas LMS](gambar/Mengukur%20duplikasi%20aktivitas%20LMS.png)
 
 *Bukti eksekusi (file gambar): `Mengukur duplikasi aktivitas LMS.png`*
 
@@ -1033,7 +1033,7 @@ ORDER BY tipe_event;
 | `quiz_attempt` | 40.321 |
 | `view_material` | 56.040 |
 
-![Menganalisis distribusi tipe aktivitas LMS](Menganalisis%20distribusi%20tipe%20aktivitas%20LMS.png)
+![Menganalisis distribusi tipe aktivitas LMS](gambar/Menganalisis%20distribusi%20tipe%20aktivitas%20LMS.png)
 
 *Bukti eksekusi (file gambar): `Menganalisis distribusi tipe aktivitas LMS.png`*
 
@@ -1063,7 +1063,7 @@ WHERE tipe_event = 'quiz_attempt'
 |---:|
 | 0 |
 
-![Memeriksa nilai quiz attempt yang kosong](Memeriksa%20nilai%20quiz%20attempt%20yang%20kosong.png)
+![Memeriksa nilai quiz attempt yang kosong](gambar/Memeriksa%20nilai%20quiz%20attempt%20yang%20kosong.png)
 
 *Bukti eksekusi (file gambar): `Memeriksa nilai quiz attempt yang kosong.png`*
 
@@ -1093,7 +1093,7 @@ WHERE tipe_event <> 'quiz_attempt'
 |---:|
 | 0 |
 
-![Aktivitas Non-Quiz yang Memiliki Skor](Aktivitas%20Non-Quiz%20yang%20Memiliki%20Skor.png)
+![Aktivitas Non-Quiz yang Memiliki Skor](gambar/Aktivitas%20Non-Quiz%20yang%20Memiliki%20Skor.png)
 
 *Bukti eksekusi (file gambar): `Aktivitas Non-Quiz yang Memiliki Skor.png`*
 
@@ -1126,7 +1126,7 @@ WHERE nominal_bayar < 0;
 |---:|
 | 5 |
 
-![Pembayaran dengan Nominal Negatif](Pembayaran%20dengan%20Nominal%20Negatif.png)
+![Pembayaran dengan Nominal Negatif](gambar/Pembayaran%20dengan%20Nominal%20Negatif.png)
 
 *Bukti eksekusi (file gambar): `Pembayaran dengan Nominal Negatif.png`*
 
@@ -1159,7 +1159,7 @@ WHERE nominal_bayar > 0
 |---:|
 | 12 |
 
-![Tanggal Pembayaran Positif yang Kosong](Tanggal%20Pembayaran%20Positif%20yang%20Kosong.png)
+![Tanggal Pembayaran Positif yang Kosong](gambar/Tanggal%20Pembayaran%20Positif%20yang%20Kosong.png)
 
 *Bukti eksekusi (file gambar): `Tanggal Pembayaran Positif yang Kosong.png`*
 
@@ -1192,7 +1192,7 @@ ORDER BY jumlah DESC, status_pembayaran;
 | `Cicilan` | 1.077 |
 | `Belum Lunas` | 461 |
 
-![Distribusi Status Pembayaran](Distribusi%20Status%20Pembayaran.png)
+![Distribusi Status Pembayaran](gambar/Distribusi%20Status%20Pembayaran.png)
 
 *Bukti eksekusi (file gambar): `Distribusi Status Pembayaran.png`*
 
@@ -1226,7 +1226,7 @@ FROM src.kelulusan;
 |---:|---:|---:|
 | 347 | 345 | 2 |
 
-![Memeriksa Duplikasi Data Kelulusan](Memeriksa%20Duplikasi%20Data%20Kelulusan.png)
+![Memeriksa Duplikasi Data Kelulusan](gambar/Memeriksa%20Duplikasi%20Data%20Kelulusan.png)
 
 *Bukti eksekusi (file gambar): `Memeriksa Duplikasi Data Kelulusan.png`*
 
@@ -1257,7 +1257,7 @@ ORDER BY jumlah DESC;
 |---|---:|
 | `Ya` | 347 |
 
-![Distribusi Status Kelulusan Tepat Waktu](Distribusi%20Status%20Kelulusan%20Tepat%20Waktu.png)
+![Distribusi Status Kelulusan Tepat Waktu](gambar/Distribusi%20Status%20Kelulusan%20Tepat%20Waktu.png)
 
 *Bukti eksekusi (file gambar): `Distribusi Status Kelulusan Tepat Waktu.png`*
 
@@ -1292,7 +1292,7 @@ WHERE m.nim IS NULL;
 |---:|
 | 0 |
 
-![Aktivitas LMS dengan NIM Tidak Terdaftar](Aktivitas%20LMS%20dengan%20NIM%20Tidak%20Terdaftar.png)
+![Aktivitas LMS dengan NIM Tidak Terdaftar](gambar/Aktivitas%20LMS%20dengan%20NIM%20Tidak%20Terdaftar.png)
 
 *Bukti eksekusi (file gambar): `Aktivitas LMS dengan NIM Tidak Terdaftar.png`*
 
@@ -1323,7 +1323,7 @@ WHERE mk.kode_mk IS NULL;
 |---:|
 | 0 |
 
-![Aktivitas LMS dengan Mata Kuliah Tidak Terdaftar](Aktivitas%20LMS%20dengan%20Mata%20Kuliah%20Tidak%20Terdaftar.png)
+![Aktivitas LMS dengan Mata Kuliah Tidak Terdaftar](gambar/Aktivitas%20LMS%20dengan%20Mata%20Kuliah%20Tidak%20Terdaftar.png)
 
 *Bukti eksekusi (file gambar): `Aktivitas LMS dengan Mata Kuliah Tidak Terdaftar.png`*
 
@@ -1354,7 +1354,7 @@ WHERE m.nim IS NULL;
 |---:|
 | 0 |
 
-![Pembayaran dengan NIM Tidak Terdaftar](Pembayaran%20dengan%20NIM%20Tidak%20Terdaftar.png)
+![Pembayaran dengan NIM Tidak Terdaftar](gambar/Pembayaran%20dengan%20NIM%20Tidak%20Terdaftar.png)
 
 *Bukti eksekusi (file gambar): `Pembayaran dengan NIM Tidak Terdaftar.png`*
 
@@ -1385,7 +1385,7 @@ WHERE m.nim IS NULL;
 |---:|
 | 0 |
 
-![Data Kelulusan dengan NIM Tidak Terdaftar](Data%20Kelulusan%20dengan%20NIM%20Tidak%20Terdaftar.png)
+![Data Kelulusan dengan NIM Tidak Terdaftar](gambar/Data%20Kelulusan%20dengan%20NIM%20Tidak%20Terdaftar.png)
 
 *Bukti eksekusi (file gambar): `Data Kelulusan dengan NIM Tidak Terdaftar.png`*
 
@@ -1491,51 +1491,51 @@ Tuliskan rekomendasi langkah pemeriksaan lanjutan. Pada tahap ini, rekomendasi t
 
 ## 13.1 Bukti Eksekusi Query
 
-Bukti eksekusi disimpan sebagai berkas gambar terpisah pada folder yang sama dengan berkas ini. Setiap gambar sudah ditautkan pada bagian **Hasil eksekusi** masing-masing soal.
+Bukti eksekusi disimpan sebagai berkas gambar terpisah pada folder `gambar/` (sejajar dengan berkas ini). Setiap gambar sudah ditautkan pada bagian **Hasil eksekusi** masing-masing soal.
 
 | No. | Bagian | Berkas Gambar |
 |---:|---|---|
-| 1 | 1.1 | [`Memeriksa versi PostgreSQL.png`](Memeriksa%20versi%20PostgreSQL.png) |
-| 2 | 1.2 | [`Memeriksa database dan user aktif.png`](Memeriksa%20database%20dan%20user%20aktif.png) |
-| 3 | 1.3 | [`Memastikan schema src tersedia.png`](Memastikan%20schema%20src%20tersedia.png) |
-| 4 | Soal 1 | [`Menghitung jumlah record setiap tabel.png`](Menghitung%20jumlah%20record%20setiap%20tabel.png) |
-| 5 | Soal 2 | [`Menghitung jumlah kolom setiap tabel.png`](Menghitung%20jumlah%20kolom%20setiap%20tabel.png) |
-| 6 | Soal 3 | [`Mengukur keunikan NIM mahasiswa.png`](Mengukur%20keunikan%20NIM%20mahasiswa.png) |
-| 7 | Soal 4 | [`Mengidentifikasi NIM duplikat.png`](Mengidentifikasi%20NIM%20duplikat.png) |
-| 8 | Soal 5 | [`Memeriksa data kota asal yang kosong.png`](Memeriksa%20data%20kota%20asal%20yang%20kosong.png) |
-| 9 | Soal 6 | [`Distribusi mahasiswa berdasarkan program studi.png`](Distribusi%20mahasiswa%20berdasarkan%20program%20studi.png) |
-| 10 | Soal 7 | [`Menghitung jumlah variasi program studi.png`](Menghitung%20jumlah%20variasi%20program%20studi.png) |
-| 11 | Soal 8 | [`Distribusi jenis kelamin mahasiswa.png`](Distribusi%20jenis%20kelamin%20mahasiswa.png) |
-| 12 | Soal 9 | [`Distribusi status mahasiswa.png`](Distribusi%20status%20mahasiswa.png) |
-| 13 | Soal 10 | [`Distribusi kode program studi.png`](Distribusi%20kode%20program%20studi.png) |
-| 14 | Soal 11 | [`Record mahasiswa dengan prodi_raw tidak cocok persis dengan program_studi.png`](Record%20mahasiswa%20dengan%20prodi_raw%20tidak%20cocok%20persis%20dengan%20program_studi.png) |
-| 15 | Soal 12 | [`Mengidentifikasi variasi format tanggal masuk.png`](Mengidentifikasi%20variasi%20format%20tanggal%20masuk.png) |
-| 16 | Soal 13 | [`Pemeriksaan keunikan ID KRS.png`](Pemeriksaan%20keunikan%20ID%20KRS.png) |
-| 17 | Soal 14 | [`Mengidentifikasi duplikasi data KRS.png`](Mengidentifikasi%20duplikasi%20data%20KRS.png) |
-| 18 | Soal 15 | [`Menghitung kelebihan record pada kombinasi KRS.png`](Menghitung%20kelebihan%20record%20pada%20kombinasi%20KRS.png) |
-| 19 | Soal 16 | [`Memeriksa nilai angka yang kosong.png`](Memeriksa%20nilai%20angka%20yang%20kosong.png) |
-| 20 | Soal 17 | [`Memeriksa nilai angka di luar rentang 0–100.png`](Memeriksa%20nilai%20angka%20di%20luar%20rentang%200%E2%80%93100.png) |
-| 21 | Soal 18 | [`Statistik nilai angka yang valid.png`](Statistik%20nilai%20angka%20yang%20valid.png) |
-| 22 | Soal 19 | [`Memeriksa ketidaksesuaian nilai angka dan nilai huruf.png`](Memeriksa%20ketidaksesuaian%20nilai%20angka%20dan%20nilai%20huruf.png) |
-| 23 | Soal 20 | [`Memeriksa kesesuaian status kelulusan.png`](Memeriksa%20kesesuaian%20status%20kelulusan.png) |
-| 24 | Soal 21 | [`Mengidentifikasi duplikasi data nilai.png`](Mengidentifikasi%20duplikasi%20data%20nilai.png) |
-| 25 | Soal 22 | [`Memeriksa NIM KRS yang tidak terdaftar sebagai mahasiswa.png`](Memeriksa%20NIM%20KRS%20yang%20tidak%20terdaftar%20sebagai%20mahasiswa.png) |
-| 26 | Soal 23 | [`Memeriksa NIM pada tabel nilai yang tidak terdaftar sebagai mahasiswa.png`](Memeriksa%20NIM%20pada%20tabel%20nilai%20yang%20tidak%20terdaftar%20sebagai%20mahasiswa.png) |
-| 27 | Soal 24 | [`Memeriksa kode mata kuliah yang tidak memiliki referensi.png`](Memeriksa%20kode%20mata%20kuliah%20yang%20tidak%20memiliki%20referensi.png) |
-| 28 | Soal 25 | [`Memeriksa semester nilai yang tidak memiliki referensi.png`](Memeriksa%20semester%20nilai%20yang%20tidak%20memiliki%20referensi.png) |
-| 29 | Soal 26 | [`Mengukur duplikasi aktivitas LMS.png`](Mengukur%20duplikasi%20aktivitas%20LMS.png) |
-| 30 | Soal 27 | [`Menganalisis distribusi tipe aktivitas LMS.png`](Menganalisis%20distribusi%20tipe%20aktivitas%20LMS.png) |
-| 31 | Soal 28 | [`Memeriksa nilai quiz attempt yang kosong.png`](Memeriksa%20nilai%20quiz%20attempt%20yang%20kosong.png) |
-| 32 | Soal 29 | [`Aktivitas Non-Quiz yang Memiliki Skor.png`](Aktivitas%20Non-Quiz%20yang%20Memiliki%20Skor.png) |
-| 33 | Soal 30 | [`Pembayaran dengan Nominal Negatif.png`](Pembayaran%20dengan%20Nominal%20Negatif.png) |
-| 34 | Soal 31 | [`Tanggal Pembayaran Positif yang Kosong.png`](Tanggal%20Pembayaran%20Positif%20yang%20Kosong.png) |
-| 35 | Soal 32 | [`Distribusi Status Pembayaran.png`](Distribusi%20Status%20Pembayaran.png) |
-| 36 | Soal 33 | [`Memeriksa Duplikasi Data Kelulusan.png`](Memeriksa%20Duplikasi%20Data%20Kelulusan.png) |
-| 37 | Soal 34 | [`Distribusi Status Kelulusan Tepat Waktu.png`](Distribusi%20Status%20Kelulusan%20Tepat%20Waktu.png) |
-| 38 | Soal 35 | [`Aktivitas LMS dengan NIM Tidak Terdaftar.png`](Aktivitas%20LMS%20dengan%20NIM%20Tidak%20Terdaftar.png) |
-| 39 | Soal 36 | [`Aktivitas LMS dengan Mata Kuliah Tidak Terdaftar.png`](Aktivitas%20LMS%20dengan%20Mata%20Kuliah%20Tidak%20Terdaftar.png) |
-| 40 | Soal 37 | [`Pembayaran dengan NIM Tidak Terdaftar.png`](Pembayaran%20dengan%20NIM%20Tidak%20Terdaftar.png) |
-| 41 | Soal 38 | [`Data Kelulusan dengan NIM Tidak Terdaftar.png`](Data%20Kelulusan%20dengan%20NIM%20Tidak%20Terdaftar.png) |
+| 1 | 1.1 | [`Memeriksa versi PostgreSQL.png`](gambar/Memeriksa%20versi%20PostgreSQL.png) |
+| 2 | 1.2 | [`Memeriksa database dan user aktif.png`](gambar/Memeriksa%20database%20dan%20user%20aktif.png) |
+| 3 | 1.3 | [`Memastikan schema src tersedia.png`](gambar/Memastikan%20schema%20src%20tersedia.png) |
+| 4 | Soal 1 | [`Menghitung jumlah record setiap tabel.png`](gambar/Menghitung%20jumlah%20record%20setiap%20tabel.png) |
+| 5 | Soal 2 | [`Menghitung jumlah kolom setiap tabel.png`](gambar/Menghitung%20jumlah%20kolom%20setiap%20tabel.png) |
+| 6 | Soal 3 | [`Mengukur keunikan NIM mahasiswa.png`](gambar/Mengukur%20keunikan%20NIM%20mahasiswa.png) |
+| 7 | Soal 4 | [`Mengidentifikasi NIM duplikat.png`](gambar/Mengidentifikasi%20NIM%20duplikat.png) |
+| 8 | Soal 5 | [`Memeriksa data kota asal yang kosong.png`](gambar/Memeriksa%20data%20kota%20asal%20yang%20kosong.png) |
+| 9 | Soal 6 | [`Distribusi mahasiswa berdasarkan program studi.png`](gambar/Distribusi%20mahasiswa%20berdasarkan%20program%20studi.png) |
+| 10 | Soal 7 | [`Menghitung jumlah variasi program studi.png`](gambar/Menghitung%20jumlah%20variasi%20program%20studi.png) |
+| 11 | Soal 8 | [`Distribusi jenis kelamin mahasiswa.png`](gambar/Distribusi%20jenis%20kelamin%20mahasiswa.png) |
+| 12 | Soal 9 | [`Distribusi status mahasiswa.png`](gambar/Distribusi%20status%20mahasiswa.png) |
+| 13 | Soal 10 | [`Distribusi kode program studi.png`](gambar/Distribusi%20kode%20program%20studi.png) |
+| 14 | Soal 11 | [`Record mahasiswa dengan prodi_raw tidak cocok persis dengan program_studi.png`](gambar/Record%20mahasiswa%20dengan%20prodi_raw%20tidak%20cocok%20persis%20dengan%20program_studi.png) |
+| 15 | Soal 12 | [`Mengidentifikasi variasi format tanggal masuk.png`](gambar/Mengidentifikasi%20variasi%20format%20tanggal%20masuk.png) |
+| 16 | Soal 13 | [`Pemeriksaan keunikan ID KRS.png`](gambar/Pemeriksaan%20keunikan%20ID%20KRS.png) |
+| 17 | Soal 14 | [`Mengidentifikasi duplikasi data KRS.png`](gambar/Mengidentifikasi%20duplikasi%20data%20KRS.png) |
+| 18 | Soal 15 | [`Menghitung kelebihan record pada kombinasi KRS.png`](gambar/Menghitung%20kelebihan%20record%20pada%20kombinasi%20KRS.png) |
+| 19 | Soal 16 | [`Memeriksa nilai angka yang kosong.png`](gambar/Memeriksa%20nilai%20angka%20yang%20kosong.png) |
+| 20 | Soal 17 | [`Memeriksa nilai angka di luar rentang 0–100.png`](gambar/Memeriksa%20nilai%20angka%20di%20luar%20rentang%200%E2%80%93100.png) |
+| 21 | Soal 18 | [`Statistik nilai angka yang valid.png`](gambar/Statistik%20nilai%20angka%20yang%20valid.png) |
+| 22 | Soal 19 | [`Memeriksa ketidaksesuaian nilai angka dan nilai huruf.png`](gambar/Memeriksa%20ketidaksesuaian%20nilai%20angka%20dan%20nilai%20huruf.png) |
+| 23 | Soal 20 | [`Memeriksa kesesuaian status kelulusan.png`](gambar/Memeriksa%20kesesuaian%20status%20kelulusan.png) |
+| 24 | Soal 21 | [`Mengidentifikasi duplikasi data nilai.png`](gambar/Mengidentifikasi%20duplikasi%20data%20nilai.png) |
+| 25 | Soal 22 | [`Memeriksa NIM KRS yang tidak terdaftar sebagai mahasiswa.png`](gambar/Memeriksa%20NIM%20KRS%20yang%20tidak%20terdaftar%20sebagai%20mahasiswa.png) |
+| 26 | Soal 23 | [`Memeriksa NIM pada tabel nilai yang tidak terdaftar sebagai mahasiswa.png`](gambar/Memeriksa%20NIM%20pada%20tabel%20nilai%20yang%20tidak%20terdaftar%20sebagai%20mahasiswa.png) |
+| 27 | Soal 24 | [`Memeriksa kode mata kuliah yang tidak memiliki referensi.png`](gambar/Memeriksa%20kode%20mata%20kuliah%20yang%20tidak%20memiliki%20referensi.png) |
+| 28 | Soal 25 | [`Memeriksa semester nilai yang tidak memiliki referensi.png`](gambar/Memeriksa%20semester%20nilai%20yang%20tidak%20memiliki%20referensi.png) |
+| 29 | Soal 26 | [`Mengukur duplikasi aktivitas LMS.png`](gambar/Mengukur%20duplikasi%20aktivitas%20LMS.png) |
+| 30 | Soal 27 | [`Menganalisis distribusi tipe aktivitas LMS.png`](gambar/Menganalisis%20distribusi%20tipe%20aktivitas%20LMS.png) |
+| 31 | Soal 28 | [`Memeriksa nilai quiz attempt yang kosong.png`](gambar/Memeriksa%20nilai%20quiz%20attempt%20yang%20kosong.png) |
+| 32 | Soal 29 | [`Aktivitas Non-Quiz yang Memiliki Skor.png`](gambar/Aktivitas%20Non-Quiz%20yang%20Memiliki%20Skor.png) |
+| 33 | Soal 30 | [`Pembayaran dengan Nominal Negatif.png`](gambar/Pembayaran%20dengan%20Nominal%20Negatif.png) |
+| 34 | Soal 31 | [`Tanggal Pembayaran Positif yang Kosong.png`](gambar/Tanggal%20Pembayaran%20Positif%20yang%20Kosong.png) |
+| 35 | Soal 32 | [`Distribusi Status Pembayaran.png`](gambar/Distribusi%20Status%20Pembayaran.png) |
+| 36 | Soal 33 | [`Memeriksa Duplikasi Data Kelulusan.png`](gambar/Memeriksa%20Duplikasi%20Data%20Kelulusan.png) |
+| 37 | Soal 34 | [`Distribusi Status Kelulusan Tepat Waktu.png`](gambar/Distribusi%20Status%20Kelulusan%20Tepat%20Waktu.png) |
+| 38 | Soal 35 | [`Aktivitas LMS dengan NIM Tidak Terdaftar.png`](gambar/Aktivitas%20LMS%20dengan%20NIM%20Tidak%20Terdaftar.png) |
+| 39 | Soal 36 | [`Aktivitas LMS dengan Mata Kuliah Tidak Terdaftar.png`](gambar/Aktivitas%20LMS%20dengan%20Mata%20Kuliah%20Tidak%20Terdaftar.png) |
+| 40 | Soal 37 | [`Pembayaran dengan NIM Tidak Terdaftar.png`](gambar/Pembayaran%20dengan%20NIM%20Tidak%20Terdaftar.png) |
+| 41 | Soal 38 | [`Data Kelulusan dengan NIM Tidak Terdaftar.png`](gambar/Data%20Kelulusan%20dengan%20NIM%20Tidak%20Terdaftar.png) |
 
 ## 13.2 Catatan Kendala Praktikum
 
