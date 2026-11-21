@@ -518,7 +518,7 @@ FROM src.mahasiswa;
 
 ```sql
 SELECT COUNT(*) AS canonical_programs
-FROM src.program_studi;
+FROM src.program_studi; 
 ```
 
 **Hasil eksekusi:**
