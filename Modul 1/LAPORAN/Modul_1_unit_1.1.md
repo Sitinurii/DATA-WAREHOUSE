@@ -276,7 +276,7 @@ Langkah impor yang dilakukan:
 | No. | File CSV | Tabel tujuan | Status impor | Jumlah baris yang dilaporkan saat impor | Catatan/error |
 |---:|---|---|---|---:|---|
 | 1 | `program_studi.csv` | `src.program_studi` | Berhasil | 6 | Sempat terimpor dua kali (12 baris); tabel dikosongkan dengan `TRUNCATE` lalu diimpor ulang satu kali hingga 6 baris |
-| 2 | `semester.csv` | `src.semester` | Berhasil | 8 | - |
+| 2 | `semester.csv` | `src.semester` | Berhasil | 8 | - | 
 | 3 | `mahasiswa.csv` | `src.mahasiswa` | Berhasil | 1.965 | - |
 | 4 | `dosen.csv` | `src.dosen` | Berhasil | 96 | - |
 | 5 | `mata_kuliah.csv` | `src.mata_kuliah` | Berhasil | 208 | - |
