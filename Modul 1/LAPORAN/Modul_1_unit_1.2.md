@@ -60,7 +60,7 @@ SELECT version();
 
 **Hasil eksekusi**
 
-![Memeriksa versi PostgreSQL](Memeriksa%20versi%20PostgreSQL.png)
+![Memeriksa versi PostgreSQL](Memeriksa versi PostgreSQL.png)
 
 *Bukti eksekusi (file gambar): `Memeriksa versi PostgreSQL.png`*
 
