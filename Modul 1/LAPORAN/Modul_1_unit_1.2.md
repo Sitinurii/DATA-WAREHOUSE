@@ -8,12 +8,12 @@
 
 ## Identitas Laporan
 
-Nama       : [Isi nama lengkap]  
-NIM        : [Isi NIM]  
-Program Studi : [Isi program studi]  
+Nama       : [Siti Nuri Andriani]  
+NIM        : [240306055]  
+Program Studi : [Teknologi Informasi]  
 Modul      : 1  
 Unit       : 1.2  
-Tanggal Praktikum : [Isi tanggal]  
+Tanggal Praktikum : [12 November 2026]  
 DBMS       : PostgreSQL 18.6  
 Database   : `uadw_lab`  
 Schema     : `src`
